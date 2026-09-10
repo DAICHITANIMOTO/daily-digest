@@ -1,0 +1,324 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>保有銘柄 日次詳報</title>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --washi: #1b1f24;
+    --washi-raised: #22272e;
+    --ink: #e8e2d4;
+    --ink-dim: #a9a297;
+    --indigo: #6fb3c9;
+    --indigo-deep: #8fc7db;
+    --vermilion: #e2725b;
+    --vermilion-bg: rgba(226,114,91,0.14);
+    --matcha: #86c79a;
+    --matcha-bg: rgba(134,199,154,0.14);
+    --gold: #d8b25c;
+    --gold-bg: rgba(216,178,92,0.14);
+    --line: rgba(232,226,212,0.14);
+    --card-shadow: 0 1px 2px rgba(0,0,0,0.4);
+  }
+}
+:root[data-theme="dark"] {
+  --washi: #1b1f24;
+  --washi-raised: #22272e;
+  --ink: #e8e2d4;
+  --ink-dim: #a9a297;
+  --indigo: #6fb3c9;
+  --indigo-deep: #8fc7db;
+  --vermilion: #e2725b;
+  --vermilion-bg: rgba(226,114,91,0.14);
+  --matcha: #86c79a;
+  --matcha-bg: rgba(134,199,154,0.14);
+  --gold: #d8b25c;
+  --gold-bg: rgba(216,178,92,0.14);
+  --line: rgba(232,226,212,0.14);
+  --card-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+:root {
+  --washi: #f6f2e8;
+  --washi-raised: #fdfbf6;
+  --ink: #23303a;
+  --ink-dim: #6b6459;
+  --indigo: #1f5e73;
+  --indigo-deep: #163f4d;
+  --vermilion: #b5402e;
+  --vermilion-bg: rgba(181,64,46,0.08);
+  --matcha: #3d7052;
+  --matcha-bg: rgba(61,112,82,0.09);
+  --gold: #97741f;
+  --gold-bg: rgba(151,116,31,0.09);
+  --line: rgba(35,48,58,0.14);
+  --card-shadow: 0 1px 3px rgba(35,30,20,0.08);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--washi);
+  color: var(--ink);
+  font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans CJK JP", sans-serif;
+  line-height: 1.75;
+  font-feature-settings: "palt";
+}
+
+.wrap { max-width: 1040px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+
+h1, h2, h3 {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif CJK JP", serif;
+  font-weight: 600;
+  text-wrap: balance;
+  margin: 0;
+}
+
+.masthead { border-bottom: 1px solid var(--line); padding-bottom: 1.75rem; margin-bottom: 2rem; }
+.masthead .top-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 1.5rem; flex-wrap: wrap; }
+.masthead .eyebrow { font-size: 0.78rem; letter-spacing: 0.18em; color: var(--indigo); font-weight: 600; }
+.masthead h1 { font-size: clamp(1.5rem, 4vw, 2.1rem); margin-top: 0.5rem; color: var(--ink); }
+.masthead .sub { margin-top: 0.6rem; color: var(--ink-dim); font-size: 0.93rem; max-width: 640px; }
+.masthead .meta-block { text-align: right; font-size: 0.72rem; color: var(--ink-dim); line-height: 1.9; font-family: ui-monospace, "SF Mono", Menlo, monospace; white-space: nowrap; }
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 2rem 0;
+}
+.stat { background: var(--washi-raised); padding: 1.1rem 1.2rem; }
+.stat .label { font-size: 0.74rem; color: var(--ink-dim); letter-spacing: 0.05em; }
+.stat .value { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; font-size: 1.4rem; font-variant-numeric: tabular-nums; margin-top: 0.3rem; }
+.stat .value.loss { color: var(--vermilion); }
+.stat .value.gain { color: var(--matcha); }
+.stat .footnote { font-size: 0.64rem; color: var(--ink-dim); margin-top: 0.2rem; }
+
+section { margin: 2.6rem 0; }
+section > h2 { font-size: 1.2rem; border-left: 4px solid var(--indigo); padding-left: 0.7rem; margin-bottom: 1rem; }
+section > .lead { color: var(--ink-dim); font-size: 0.9rem; margin-bottom: 1.2rem; }
+
+.banner {
+  border-radius: 10px;
+  padding: 1rem 1.3rem;
+  box-shadow: var(--card-shadow);
+  border: 1px solid;
+  font-size: 0.9rem;
+}
+.banner.tone-alert { background: var(--vermilion-bg); border-color: var(--vermilion); }
+.banner.tone-calm { background: var(--matcha-bg); border-color: var(--matcha); }
+.banner.tone-warn { background: var(--gold-bg); border-color: var(--gold); }
+.banner + .banner { margin-top: 0.7rem; }
+
+.pill {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.pill.edge-yes { background: var(--matcha-bg); color: var(--matcha); }
+.pill.edge-half { background: var(--gold-bg); color: var(--gold); }
+.pill.edge-no { background: var(--line); color: var(--ink-dim); }
+/* margin-*(信用倍率の閾値バッジ)は、投資Botterで検証されていない世間の
+   経験則であることをedge-*(実証エッジ)と視覚的に区別するため、塗りつぶし
+   ではなく破線の枠のみにしている(方針4: 通説と実証データの区別) */
+.pill.margin-high, .pill.margin-mid, .pill.margin-low {
+  background: transparent;
+  border: 1px dashed var(--ink-dim);
+  color: var(--ink-dim);
+}
+.pill.na { background: var(--line); color: var(--ink-dim); }
+
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1.1rem; }
+
+.card { background: var(--washi-raised); border: 1px solid var(--line); border-left: 4px solid var(--vermilion); border-radius: 12px; overflow: hidden; box-shadow: var(--card-shadow); }
+.card.gain { border-left-color: var(--matcha); }
+.card-body { padding: 1.1rem 1.2rem 1.3rem; }
+.card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.8rem; }
+.card-head .code { font-size: 0.74rem; color: var(--ink-dim); font-variant-numeric: tabular-nums; }
+.card-head .name { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; font-size: 1.08rem; margin-top: 0.1rem; }
+.card-head .pnl { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.card-head .pnl .pct { font-size: 1.1rem; font-weight: 700; }
+.card-head .pnl .amt { font-size: 0.74rem; color: var(--ink-dim); margin-top: 0.1rem; }
+.pnl.loss .pct { color: var(--vermilion); }
+.pnl.gain .pct { color: var(--matcha); }
+
+.spark-row { display: flex; align-items: center; gap: 0.8rem; margin: 0.7rem 0; }
+.spark-row svg.spark { width: 140px; height: 34px; flex: none; }
+.spark-row .spark-note { font-size: 0.7rem; color: var(--ink-dim); line-height: 1.5; }
+
+.metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin: 0.85rem 0; font-size: 0.76rem; }
+.metrics div { text-align: center; padding: 0.4rem 0.2rem; background: var(--washi); border-radius: 6px; }
+.metrics .m-label { color: var(--ink-dim); font-size: 0.66rem; }
+.metrics .m-value { font-variant-numeric: tabular-nums; font-weight: 600; margin-top: 0.15rem; }
+
+.badges { margin: 0.6rem 0 0.2rem; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+.machine-facts { list-style: none; margin: 0.7rem 0 0; padding: 0; font-size: 0.78rem; color: var(--ink-dim); }
+.machine-facts li { padding: 0.35rem 0; border-bottom: 1px dashed var(--line); font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.74rem; }
+.machine-facts li:last-child { border-bottom: none; }
+
+.summary-text { font-size: 0.86rem; color: var(--ink); margin-top: 0.7rem; }
+
+details.more { margin-top: 0.7rem; }
+details.more summary { cursor: pointer; font-size: 0.8rem; color: var(--indigo); font-weight: 600; }
+details.more summary:hover { color: var(--indigo-deep); }
+details.more .detail-body { margin-top: 0.7rem; font-size: 0.85rem; border-top: 1px dashed var(--line); padding-top: 0.7rem; }
+details.more .detail-body h4 { font-size: 0.76rem; color: var(--ink-dim); margin: 0.7rem 0 0.25rem; letter-spacing: 0.03em; }
+details.more .detail-body h4:first-child { margin-top: 0; }
+details.more .detail-body p { margin: 0.4rem 0; }
+details.more .sources { font-size: 0.7rem; color: var(--ink-dim); margin-top: 0.6rem; }
+details.more .sources a { color: var(--ink-dim); }
+
+.tag-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.tag-table th, .tag-table td { text-align: left; padding: 0.5rem 0.65rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+.tag-table th { color: var(--ink-dim); font-weight: 500; font-size: 0.72rem; letter-spacing: 0.03em; position: sticky; top: 0; background: var(--washi-raised); }
+.tag-table td.num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.tag-table td.name-cell { white-space: nowrap; }
+.tag-table td.name-cell .code { color: var(--ink-dim); font-size: 0.7rem; margin-left: 0.3rem; }
+.tag-table tr:last-child td { border-bottom: none; }
+.table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--washi-raised); box-shadow: var(--card-shadow); }
+.table-scroll .tag-table { min-width: 760px; }
+.pl-loss { color: var(--vermilion); }
+.pl-gain { color: var(--matcha); }
+
+footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: 0.76rem; color: var(--ink-dim); }
+footer h4 { font-size: 0.78rem; color: var(--ink-dim); margin: 1rem 0 0.35rem; }
+footer ul { margin: 0 0 0.4rem; padding-left: 1.2rem; }
+footer p { margin: 0.5rem 0; }
+
+@media (max-width: 640px) {
+  .wrap { padding: 1.5rem 1rem 3rem; }
+  .card-grid { grid-template-columns: 1fr; }
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .masthead h1 { font-size: 1.4rem; }
+  section { margin: 1.8rem 0; }
+}
+
+@media (max-width: 480px) {
+  .metrics { grid-template-columns: repeat(2, 1fr); }
+  .masthead .top-row { flex-direction: column; }
+  .masthead .meta-block { text-align: left; white-space: normal; line-height: 1.7; }
+  .spark-row { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+  .spark-row svg.spark { width: 100%; max-width: 220px; }
+  .card-head { flex-wrap: wrap; }
+  .card-head .pnl { text-align: left; white-space: normal; }
+  .stat-grid { grid-template-columns: 1fr 1fr; }
+  .badges .pill { font-size: 0.68rem; }
+}
+</style>
+
+<div class="wrap">
+
+<div class="masthead">
+  <div class="top-row">
+    <div>
+      <div class="eyebrow">DAILY DIGEST · 銘柄相談ツール</div>
+      <h1>保有銘柄 日次詳報</h1>
+      <div class="sub">機械的な変化検知で引っかかった銘柄に加えて、常時ウォッチ指定銘柄を深掘りし、残りは1行に圧縮した日次版です。</div>
+    </div>
+    <div class="meta-block">
+      2026-09-11 07:29 生成<br>
+      データソース: データ取得.py(yfinance)
+    </div>
+  </div>
+</div>
+
+
+
+<section>
+  <h2>前日の米国市場(実証エッジ)</h2>
+  <div class="lead">投資Botterで実証済みの数少ないエッジの一つ。前日の米国市場の動きは、翌営業日の日本株全体とOOS的中率62.3%で連動することが検証されている(方向性の連動傾向であり、個別銘柄の値動きを予測するものではない)。</div>
+  <div class="stat-grid">
+    <div class="stat"><div class="label">S&amp;P500(前日比)</div><div class="value loss">-0.58%</div></div>
+    <div class="stat"><div class="label">日経平均(前日比)</div><div class="value loss">-0.19%</div></div>
+    <div class="stat"><div class="label">ドル円</div><div class="value">154.44円</div></div>
+    <div class="stat"><div class="label">as of</div><div class="value" style="font-size:1rem;">2026-09-10</div></div>
+  </div>
+</section>
+
+<section>
+  <div class="banner tone-alert">本日、2銘柄を深掘りしました: 太陽誘電、キオクシアホールディングス</div>
+</section>
+
+<section>
+  <h2>本日の深掘り(2銘柄)</h2>
+  <div class="lead">機械検知で引っかかった銘柄+常時ウォッチ指定銘柄。</div>
+  <div class="card-grid">
+    
+    <div class="card gain">
+      <div class="card-body">
+        <div class="card-head">
+          <div>
+            <div class="code">6976 <span class="pill edge-yes">Tier A: 頑健</span></div>
+            <div class="name">太陽誘電</div>
+          </div>
+          <div class="pnl gain">
+            <div class="pct">+4.80%</div>
+            <div class="amt">前日終値8,972円→本日9,403円</div>
+          </div>
+        </div>
+        
+        <div class="metrics"><div><div class="m-label">PER</div><div class="m-value">83.3倍</div></div><div><div class="m-label">PBR</div><div class="m-value">3.33倍</div></div></div>
+        <div class="badges"></div>
+        <ul class="machine-facts"><li>ねじれ検知: SOXX -2.74% vs 当日6976 +4.80%</li><li>[macro] SOXX前営業日比: -2.74%</li></ul>
+        <div class="summary-text"></div>
+        
+        <details class="more">
+          <summary>Claude解釈(考察)を見る</summary>
+          <div class="detail-body"><p>太陽誘電(6976)は本日+4.80%と上昇。一方、対応する米国半導体ETF(SOXX)は前営業日比-2.74%と下落し、両者が逆方向に動く「ねじれ」を検知した。本銘柄は過去3年の期間分割検証すべてで米国セクター指標との連動が有意、プラセボ検定でも無関係な組み合わせより有意率が低く、連動性が確認されている数少ない保有銘柄である。したがって本日の値動きは通常のセクター連動では説明しにくく、個別要因(決算・受注動向・需給・為替・国内材料など)に左右されやすい局面にあると整理できる。</p></div>
+        </details>
+      </div>
+    </div>
+    
+    <div class="card gain">
+      <div class="card-body">
+        <div class="card-head">
+          <div>
+            <div class="code">285A <span class="pill margin-mid">Tier B: 留保あり</span></div>
+            <div class="name">キオクシアホールディングス</div>
+          </div>
+          <div class="pnl gain">
+            <div class="pct">+1.91%</div>
+            <div class="amt">前日終値57,000円→本日58,090円</div>
+          </div>
+        </div>
+        
+        <div class="metrics"><div><div class="m-label">PER</div><div class="m-value">56.5倍</div></div><div><div class="m-label">PBR</div><div class="m-value">13.24倍</div></div></div>
+        <div class="badges"></div>
+        <ul class="machine-facts"><li>[macro] SOXX前営業日比: -2.74%</li><li>[watch] 常時ウォッチ指定銘柄</li></ul>
+        <div class="summary-text"></div>
+        
+        <details class="more">
+          <summary>Claude解釈(考察)を見る</summary>
+          <div class="detail-body"><p>キオクシアHD(285A)は本日+1.91%と上昇した一方、対応する米半導体セクターETF(SOXX)の前営業日比は-2.74%で、両者は逆方向に振れた。もともとセクターETFとの連動は「有意だが留保あり」の判定で、無関係なETFでも47.4%の確率で同程度に有意となるため、連動指標としての重みは小さい。同社株はNAND型フラッシュメモリの需給・価格、AI関連の投資需要、為替、半導体市況全体の地合いに左右されやすいが、本日の値動きはセクター全体の動きだけでは説明しにくい状況といえる。</p></div>
+        </details>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<section>
+  <h2>変化なしの銘柄(圧縮表示)</h2>
+  <div class="lead">機械検知の閾値に達せず、常時ウォッチ指定にも入っていない9銘柄です。</div>
+  <div class="table-scroll">
+    <table class="tag-table">
+      <tr><th>銘柄</th><th class="num">現在値</th><th class="num">前日比</th><th class="num">PER</th><th class="num">信用倍率</th></tr>
+      <tr><td class="name-cell">ムゲンエステート<span class="code">3299</span></td><td class="num">1,705円</td><td class="num pl-gain">+0.24%</td><td class="num">8.6倍</td><td class="num">3.00倍</td></tr><tr><td class="name-cell">日本化薬<span class="code">4272</span></td><td class="num">2,039円</td><td class="num pl-gain">+0.27%</td><td class="num">12.6倍</td><td class="num">2.07倍</td></tr><tr><td class="name-cell">JX金属<span class="code">5016</span></td><td class="num">3,812円</td><td class="num pl-loss">-2.48%</td><td class="num">34.7倍</td><td class="num">32.97倍</td></tr><tr><td class="name-cell">Gライト・再エネインフラ<span class="code">509A</span></td><td class="num">71,100円</td><td class="num pl-loss">-0.14%</td><td class="num">—</td><td class="num">—</td></tr><tr><td class="name-cell">DOWA HLDG<span class="code">5714</span></td><td class="num">9,263円</td><td class="num pl-loss">-2.04%</td><td class="num">9.0倍</td><td class="num">31.87倍</td></tr><tr><td class="name-cell">川崎重工業<span class="code">7012</span></td><td class="num">2,349円</td><td class="num pl-loss">-2.85%</td><td class="num">18.2倍</td><td class="num">28.11倍</td></tr><tr><td class="name-cell">三井住友FG<span class="code">8316</span></td><td class="num">6,901円</td><td class="num pl-gain">+1.47%</td><td class="num">15.2倍</td><td class="num">13.18倍</td></tr><tr><td class="name-cell">ミスミグループ本社<span class="code">9962</span></td><td class="num">3,539円</td><td class="num pl-loss">-0.31%</td><td class="num">23.8倍</td><td class="num">1.80倍</td></tr><tr><td class="name-cell">MRK HLDG<span class="code">9980</span></td><td class="num">95円</td><td class="num pl-gain">+0.00%</td><td class="num">10.0倍</td><td class="num">—</td></tr>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <p>このレポートは投資Botterプロジェクト「銘柄相談ツール」の日次自動診断です。特定の売買を推奨するものではありません。株価の上昇・下降の方向性についての予測・示唆は一切含んでいません。</p>
+  
+</footer>
+
+</div>
