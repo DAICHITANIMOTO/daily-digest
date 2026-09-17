@@ -224,7 +224,7 @@ footer p { margin: 0.5rem 0; }
       <div class="sub">機械的な変化検知で引っかかった銘柄に加えて、常時ウォッチ指定銘柄を深掘りし、残りは1行に圧縮した日次版です。</div>
     </div>
     <div class="meta-block">
-      2026-09-18 07:32 生成<br>
+      2026-09-17 07:31 生成<br>
       データソース: データ取得.py(yfinance)
     </div>
   </div>
@@ -236,91 +236,21 @@ footer p { margin: 0.5rem 0; }
   <h2>前日の米国市場(実証エッジ)</h2>
   <div class="lead">投資Botterで実証済みの数少ないエッジの一つ。前日の米国市場の動きは、翌営業日の日本株全体とOOS的中率62.3%で連動することが検証されている(方向性の連動傾向であり、個別銘柄の値動きを予測するものではない)。</div>
   <div class="stat-grid">
-    <div class="stat"><div class="label">S&amp;P500(前日比)</div><div class="value gain">+1.14%</div></div>
-    <div class="stat"><div class="label">日経平均(前日比)</div><div class="value gain">+0.69%</div></div>
-    <div class="stat"><div class="label">ドル円</div><div class="value">156.01円</div></div>
-    <div class="stat"><div class="label">as of</div><div class="value" style="font-size:1rem;">2026-09-17</div></div>
+    <div class="stat"><div class="label">S&amp;P500(前日比)</div><div class="value loss">-0.45%</div></div>
+    <div class="stat"><div class="label">日経平均(前日比)</div><div class="value loss">-0.01%</div></div>
+    <div class="stat"><div class="label">ドル円</div><div class="value">156.25円</div></div>
+    <div class="stat"><div class="label">as of</div><div class="value" style="font-size:1rem;">2026-09-16</div></div>
   </div>
 </section>
 
 <section>
-  <div class="banner tone-alert">本日、3銘柄を深掘りしました: 太陽誘電、ミスミグループ本社、キオクシアホールディングス</div>
+  <div class="banner tone-alert">本日、1銘柄を深掘りしました: キオクシアホールディングス</div>
 </section>
 
 <section>
-  <h2>本日の深掘り(3銘柄)</h2>
+  <h2>本日の深掘り(1銘柄)</h2>
   <div class="lead">機械検知で引っかかった銘柄+常時ウォッチ指定銘柄。</div>
   <div class="card-grid">
-    
-    <div class="card loss">
-      <div class="card-body">
-        <div class="card-head">
-          <div>
-            <div class="code">6976 <span class="pill edge-yes">Tier A: 頑健</span></div>
-            <div class="name">太陽誘電</div>
-          </div>
-          <div class="pnl loss">
-            <div class="pct">-3.89%</div>
-            <div class="amt">前日終値9,364円→本日9,000円</div>
-          </div>
-        </div>
-        
-        <div class="metrics"><div><div class="m-label">配当利回り</div><div class="m-value">0.96%</div></div><div><div class="m-label">PER</div><div class="m-value">87.0倍</div></div><div><div class="m-label">PBR</div><div class="m-value">3.18倍</div></div><div><div class="m-label">含み損益</div><div class="m-value">-20.00%</div></div><div><div class="m-label">損益額</div><div class="m-value">-4,500円</div></div></div>
-        <div class="badges"></div>
-        <ul class="machine-facts"><li>ねじれ検知: SOXX +3.39% vs 当日6976 -3.89%</li><li>[macro] SOXX前営業日比: +3.39%</li><li>[為替感応度・暫定] 輸出系(為替感応度高)(確信度: 中〜高、投資Botter未検証)</li><li>[開示] 直近35日以内に新規開示なし</li></ul>
-        
-        <div class="summary-text"></div>
-        
-        <details class="more">
-          <summary>Claude解釈(考察)を見る</summary>
-          <div class="detail-body"><p>**太陽誘電(6976)｜本日のねじれ検知**
-
-本日の株価は **-3.89%**、対応するSOXXは前営業日比 **+3.39%** で、ETFと逆行する「ねじれ」が発生しました。本銘柄は3年間の期間分割検証すべてで米国セクター指標との連動が有意、プラセボ検定でも無関係な組み合わせより低い有意率と、統計的連動が確認された数少ない保有銘柄です。その銘柄で逆行が出たため、今回はセクター連動以外の要因（国内需給・個別材料など）が効いた局面といえます。為替感応度は「輸出系（高）」と推定されますが、これは決算資料等での定量検証を経ていない暫定的な定性分類です。
-
-（約230字。方向性の予測・示唆は含めていません）</p></div>
-        </details>
-      </div>
-    </div>
-    
-    <div class="card loss">
-      <div class="card-body">
-        <div class="card-head">
-          <div>
-            <div class="code">9962 <span class="pill na">Tier C: 非該当</span></div>
-            <div class="name">ミスミグループ本社</div>
-          </div>
-          <div class="pnl loss">
-            <div class="pct">-1.03%</div>
-            <div class="amt">前日終値3,599円→本日3,562円</div>
-          </div>
-        </div>
-        
-        <div class="metrics"><div><div class="m-label">配当利回り</div><div class="m-value">1.59%</div></div><div><div class="m-label">PER</div><div class="m-value">24.2倍</div></div><div><div class="m-label">PBR</div><div class="m-value">2.44倍</div></div><div><div class="m-label">含み損益</div><div class="m-value">+2.95%</div></div><div><div class="m-label">損益額</div><div class="m-value">+1,020円</div></div></div>
-        <div class="badges"></div>
-        <ul class="machine-facts"><li>新規TDnet開示: 特定子会社の異動（子会社設立）に関するお知らせ</li><li>新規TDnet開示: CVCファンド設立に関するお知らせ</li><li>[開示] 新規開示を2件検知: CVCファンド設立に関するお知らせ、特定子会社の異動（子会社設立）に関するお知らせ</li></ul>
-        <div class="banner tone-calm" style="margin-top:0.6rem;"><p>【適時開示】CVCファンド設立に関するお知らせ<br><strong>要約（事実整理・約200字）</strong>
-
-ミスミグループ本社（9962・東証プライム）は2026年9月17日の取締役会で、米国子会社MISUMI Investment USA Corporation（MIUC）の出資によりCVCファンド「MISUMI Venture Capital Fund I, LP」を米国デラウェア州に設立することを決議したと公表。2026年10月設立予定、規模は50百万米ドル、運用期間10年。MIUCが100%出資するリミテッドパートナーで、フロンティアハードウェア・ロボティクス・産業AI分野のスタートアップへの戦略的投資が目的。受入出資金額が資本金の10%以上となれば特定子会社に該当する可能性がある。連結業績への影響は軽微としている。
-
-（開示文書に記載された事実のみを整理しました。株価への影響については判断・言及していません。）</p><p>【適時開示】特定子会社の異動（子会社設立）に関するお知らせ<br><strong>要約（事実のみ）</strong>
-
-ミスミグループ本社（9962・東証プライム）は2026年9月17日の取締役会で、米国子会社MISUMI Investment USA Corporation（MIUC）の100%出資により、子会社「KIBAN, LLC」（米国デラウェア州）を設立することを決議した。事業内容は次世代フロンティアテクノロジー産業向けの精密部品加工・検査・梱包・サプライチェーン管理で、北米製造プラットフォーム構築が目的。出資額は40百万米ドルで、資本金の10分の1以上に当たるため特定子会社に該当する。設立は2026年10月予定、代表はDavid Evans氏。会社は連結業績への影響を軽微としている。（約230字）
-
-補足：文中の「影響は軽微」は開示書面の記載そのままで、私の評価ではありません。</p></div>
-        <div class="summary-text"></div>
-        
-        <details class="more">
-          <summary>Claude解釈(考察)を見る</summary>
-          <div class="detail-body"><p>**ミスミグループ本社(9962)：-1.03%、開示は子会社設立系の1件（CVC）**
-
-本日のミスミグループ本社(9962)は-1.03%。同日TDnetで「特定子会社の異動（子会社設立）」「CVCファンド設立」の2件を開示したが、両者は一体の案件で、CVC（コーポレート・ベンチャーキャピタル）運営会社の新設に伴うもの。設立時点では業績予想の修正を伴わず、当日の値動きとの直接的な因果は確認できない水準にとどまる。同社の収益は国内製造業向けFA部品・金型部品の受注が中心で、設備投資や生産の動向、部品調達コストに左右されやすい状況。CVCは中長期の投資スタンスを測る材料。
-
----
-
-補足：CVCファンドは、事業会社が自己資金でスタートアップに出資する枠組みです。「特定子会社の異動」は、その運営会社（GP）を新設したことによる形式的な開示で、2件は同じ動きを別ルールで届け出たものと読めます。</p></div>
-        </details>
-      </div>
-    </div>
     
     <div class="card loss">
       <div class="card-body">
@@ -330,26 +260,24 @@ footer p { margin: 0.5rem 0; }
             <div class="name">キオクシアホールディングス</div>
           </div>
           <div class="pnl loss">
-            <div class="pct">-1.77%</div>
-            <div class="amt">前日終値50,780円→本日49,880円</div>
+            <div class="pct">-1.87%</div>
+            <div class="amt">前日終値51,750円→本日50,780円</div>
           </div>
         </div>
         
-        <div class="metrics"><div><div class="m-label">PER</div><div class="m-value">50.3倍</div></div><div><div class="m-label">PBR</div><div class="m-value">11.37倍</div></div><div><div class="m-label">含み損益</div><div class="m-value">-17.47%</div></div><div><div class="m-label">損益額</div><div class="m-value">-95,009円</div></div></div>
+        <div class="metrics"><div><div class="m-label">PER</div><div class="m-value">51.3倍</div></div><div><div class="m-label">PBR</div><div class="m-value">11.57倍</div></div><div><div class="m-label">含み損益</div><div class="m-value">-15.98%</div></div><div><div class="m-label">損益額</div><div class="m-value">-86,909円</div></div></div>
         <div class="badges"></div>
-        <ul class="machine-facts"><li>[macro] SOXX前営業日比: +3.39%</li><li>[watch] 常時ウォッチ指定銘柄</li><li>[為替感応度・暫定] 輸出系(為替感応度おそらく高)(確信度: 低〜中、投資Botter未検証)</li><li>[開示] 直近35日以内に新規開示なし</li></ul>
+        <ul class="machine-facts"><li>[macro] SOXX前営業日比: +0.64%</li><li>[watch] 常時ウォッチ指定銘柄</li><li>[為替感応度・暫定] 輸出系(為替感応度おそらく高)(確信度: 低〜中、投資Botter未検証)</li><li>[開示] 直近35日以内に新規開示なし</li></ul>
         
         <div class="summary-text"></div>
         
         <details class="more">
           <summary>Claude解釈(考察)を見る</summary>
-          <div class="detail-body"><p>**キオクシアHD(285A)は本日-1.77%、対応するSOXXは前営業日比+3.39%で、方向は逆でした。**
+          <div class="detail-body"><p>**キオクシアHD(285A) 本日の整理**
 
-ただし両者の連動判定は「有意だが留保あり」で、無関係なETFでも47.4%の確率で同程度に有意となる水準です。SOXXの上昇を今回の下落と結び付けて読むだけの根拠は乏しく、参考情報として軽く扱うのが妥当です。
+キオクシアHDは本日-1.87%で下落。一方、対応する米国半導体ETF(SOXX)の前営業日比は+0.64%と、方向が逆になりました。ただしSOXXとの連動性は「有意だが留保あり」の判定で、無関係なETFでも47.4%の確率で同程度に有意となるため、参考情報としての重みは小さいものです。為替感応度は「輸出系(おそらく高)」と推定されていますが、これは決算資料等での定量検証を経ていない暫定的な定性分類にとどまります。本日の値動きには、海外半導体株や為替以外の個別要因が含まれる可能性があります。
 
-為替感応度は「輸出系(おそらく高)」と推定されていますが、これは決算資料等での定量検証を経ていない暫定的な定性分類(確信度: 低〜中)です。
-
-整理すると、この銘柄は半導体市況と為替という外部要因に左右されやすい位置づけにある、という点までが現時点で言える事実です。それらの要因が今後どちらへ動くかは、この情報からは判断できません。</p></div>
+*（約210字）*</p></div>
         </details>
       </div>
     </div>
@@ -359,11 +287,11 @@ footer p { margin: 0.5rem 0; }
 
 <section>
   <h2>変化なしの銘柄(圧縮表示)</h2>
-  <div class="lead">機械検知の閾値に達せず、常時ウォッチ指定にも入っていない8銘柄です。</div>
+  <div class="lead">機械検知の閾値に達せず、常時ウォッチ指定にも入っていない10銘柄です。</div>
   <div class="table-scroll">
     <table class="tag-table">
       <tr><th>銘柄</th><th class="num">現在値</th><th class="num">前日比</th><th class="num">含み損益</th><th class="num">配当利回り</th><th class="num">PER</th><th class="num">信用倍率</th></tr>
-      <tr><td class="name-cell">ムゲンエステート<span class="code">3299</span></td><td class="num">1,701円</td><td class="num pl-gain">+0.18%</td><td class="num pl-loss">-9.04%</td><td class="num">6.11%</td><td class="num">8.6倍</td><td class="num">3.17倍</td></tr><tr><td class="name-cell">日本化薬<span class="code">4272</span></td><td class="num">2,115円</td><td class="num pl-gain">+0.79%</td><td class="num pl-gain">+17.50%</td><td class="num">3.15%</td><td class="num">13.0倍</td><td class="num">3.00倍</td></tr><tr><td class="name-cell">JX金属<span class="code">5016</span></td><td class="num">3,500円</td><td class="num pl-loss">-4.16%</td><td class="num pl-loss">-15.92%</td><td class="num">0.55%</td><td class="num">32.4倍</td><td class="num">30.19倍</td></tr><tr><td class="name-cell">Gライト・再エネインフラ<span class="code">509A</span></td><td class="num">71,500円</td><td class="num pl-gain">+0.00%</td><td class="num pl-loss">-10.62%</td><td class="num">5.10%</td><td class="num">—</td><td class="num">—</td></tr><tr><td class="name-cell">DOWA HLDG<span class="code">5714</span></td><td class="num">8,926円</td><td class="num pl-loss">-0.61%</td><td class="num pl-loss">-3.90%</td><td class="num">3.76%</td><td class="num">8.6倍</td><td class="num">45.47倍</td></tr><tr><td class="name-cell">川崎重工業<span class="code">7012</span></td><td class="num">2,421円</td><td class="num pl-gain">+1.36%</td><td class="num pl-loss">-21.88%</td><td class="num">1.67%</td><td class="num">18.7倍</td><td class="num">29.22倍</td></tr><tr><td class="name-cell">三井住友FG<span class="code">8316</span></td><td class="num">6,878円</td><td class="num pl-gain">+0.53%</td><td class="num pl-loss">-1.81%</td><td class="num">1.32%</td><td class="num">15.3倍</td><td class="num">21.46倍</td></tr><tr><td class="name-cell">MRK HLDG<span class="code">9980</span></td><td class="num">94円</td><td class="num pl-gain">+0.00%</td><td class="num pl-loss">-6.00%</td><td class="num">1.06%</td><td class="num">9.9倍</td><td class="num">—</td></tr>
+      <tr><td class="name-cell">ムゲンエステート<span class="code">3299</span></td><td class="num">1,698円</td><td class="num pl-loss">-0.47%</td><td class="num pl-loss">-9.20%</td><td class="num">—</td><td class="num">8.6倍</td><td class="num">3.17倍</td></tr><tr><td class="name-cell">日本化薬<span class="code">4272</span></td><td class="num">2,098円</td><td class="num pl-gain">+2.19%</td><td class="num pl-gain">+16.58%</td><td class="num">3.21%</td><td class="num">12.7倍</td><td class="num">3.00倍</td></tr><tr><td class="name-cell">JX金属<span class="code">5016</span></td><td class="num">3,652円</td><td class="num pl-loss">-0.05%</td><td class="num pl-loss">-12.26%</td><td class="num">0.55%</td><td class="num">32.5倍</td><td class="num">30.19倍</td></tr><tr><td class="name-cell">Gライト・再エネインフラ<span class="code">509A</span></td><td class="num">71,500円</td><td class="num pl-gain">+0.70%</td><td class="num pl-loss">-10.62%</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr><tr><td class="name-cell">DOWA HLDG<span class="code">5714</span></td><td class="num">8,981円</td><td class="num pl-gain">+0.67%</td><td class="num pl-loss">-3.31%</td><td class="num">3.79%</td><td class="num">8.6倍</td><td class="num">45.47倍</td></tr><tr><td class="name-cell">太陽誘電<span class="code">6976</span></td><td class="num">9,364円</td><td class="num pl-gain">+1.82%</td><td class="num pl-loss">-16.76%</td><td class="num">0.96%</td><td class="num">85.5倍</td><td class="num">6.92倍</td></tr><tr><td class="name-cell">川崎重工業<span class="code">7012</span></td><td class="num">2,388円</td><td class="num pl-gain">+0.70%</td><td class="num pl-loss">-22.93%</td><td class="num">1.69%</td><td class="num">18.3倍</td><td class="num">29.22倍</td></tr><tr><td class="name-cell">三井住友FG<span class="code">8316</span></td><td class="num">6,842円</td><td class="num pl-gain">+0.00%</td><td class="num pl-loss">-2.33%</td><td class="num">1.32%</td><td class="num">15.3倍</td><td class="num">21.46倍</td></tr><tr><td class="name-cell">ミスミグループ本社<span class="code">9962</span></td><td class="num">3,599円</td><td class="num pl-gain">+1.49%</td><td class="num pl-gain">+4.02%</td><td class="num">1.61%</td><td class="num">23.8倍</td><td class="num">3.16倍</td></tr><tr><td class="name-cell">MRK HLDG<span class="code">9980</span></td><td class="num">94円</td><td class="num pl-gain">+0.00%</td><td class="num pl-loss">-6.00%</td><td class="num">1.06%</td><td class="num">9.9倍</td><td class="num">—</td></tr>
     </table>
   </div>
 </section>
