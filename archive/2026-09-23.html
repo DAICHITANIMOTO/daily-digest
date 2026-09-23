@@ -224,7 +224,7 @@ footer p { margin: 0.5rem 0; }
       <div class="sub">機械的な変化検知で引っかかった銘柄に加えて、常時ウォッチ指定銘柄を深掘りし、残りは1行に圧縮した日次版です。</div>
     </div>
     <div class="meta-block">
-      2026-09-24 07:31 生成<br>
+      2026-09-23 07:31 生成<br>
       データソース: データ取得.py(yfinance)
     </div>
   </div>
@@ -236,51 +236,21 @@ footer p { margin: 0.5rem 0; }
   <h2>前日の米国市場(実証エッジ)</h2>
   <div class="lead">投資Botterで実証済みの数少ないエッジの一つ。前日の米国市場の動きは、翌営業日の日本株全体とOOS的中率62.3%で連動することが検証されている(方向性の連動傾向であり、個別銘柄の値動きを予測するものではない)。</div>
   <div class="stat-grid">
-    <div class="stat"><div class="label">S&amp;P500(前日比)</div><div class="value loss">-0.76%</div></div>
+    <div class="stat"><div class="label">S&amp;P500(前日比)</div><div class="value loss">-0.00%</div></div>
     <div class="stat"><div class="label">日経平均(前日比)</div><div class="value gain">+1.38%</div></div>
-    <div class="stat"><div class="label">ドル円</div><div class="value">158.30円</div></div>
-    <div class="stat"><div class="label">as of</div><div class="value" style="font-size:1rem;">2026-09-23</div></div>
+    <div class="stat"><div class="label">ドル円</div><div class="value">157.46円</div></div>
+    <div class="stat"><div class="label">as of</div><div class="value" style="font-size:1rem;">2026-09-22</div></div>
   </div>
 </section>
 
 <section>
-  <div class="banner tone-alert">本日、2銘柄を深掘りしました: 太陽誘電、キオクシアホールディングス</div>
+  <div class="banner tone-alert">本日、1銘柄を深掘りしました: キオクシアホールディングス</div>
 </section>
 
 <section>
-  <h2>本日の深掘り(2銘柄)</h2>
+  <h2>本日の深掘り(1銘柄)</h2>
   <div class="lead">機械検知で引っかかった銘柄+常時ウォッチ指定銘柄。</div>
   <div class="card-grid">
-    
-    <div class="card gain">
-      <div class="card-body">
-        <div class="card-head">
-          <div>
-            <div class="code">6976 <span class="pill edge-yes">Tier A: 頑健</span></div>
-            <div class="name">太陽誘電</div>
-          </div>
-          <div class="pnl gain">
-            <div class="pct">+4.17%</div>
-            <div class="amt">前日終値9,000円→本日9,375円</div>
-          </div>
-        </div>
-        
-        <div class="metrics"><div><div class="m-label">配当利回り</div><div class="m-value">0.96%</div></div><div><div class="m-label">PER</div><div class="m-value">87.0倍</div></div><div><div class="m-label">PBR</div><div class="m-value">3.32倍</div></div><div><div class="m-label">含み損益</div><div class="m-value">-16.67%</div></div><div><div class="m-label">損益額</div><div class="m-value">-3,750円</div></div></div>
-        <div class="badges"></div>
-        <ul class="machine-facts"><li>ねじれ検知: SOXX -1.23% vs 当日6976 +4.17%</li><li>[macro] SOXX前営業日比: -1.23%</li><li>[為替感応度・暫定] 輸出系(為替感応度高)(確信度: 中〜高、投資Botter未検証)</li><li>[開示] 直近35日以内に新規開示なし</li></ul>
-        
-        <div class="summary-text"></div>
-        
-        <details class="more">
-          <summary>Claude解釈(考察)を見る</summary>
-          <div class="detail-body"><p>**太陽誘電(6976)：ETFとのねじれを検知**
-
-本日の株価は+4.17%、一方で対応する米国セクターETF(SOXX)は前営業日比-1.23%と、両者が逆行する「ねじれ」が発生しました。本銘柄は投資Botterの検証で、3年間の期間分割すべてで米国セクター指標との連動が有意、プラセボ検定でも無関係な組み合わせより低い有意率が確認された数少ない保有銘柄です。その通常パターンから外れた形になります。したがって本日の変動は、セクター共通要因以外（個別材料・需給など）の影響を受けやすい状況にあると整理できます。なお為替感応度は「輸出系（感応度高）」と推定されていますが、これは決算資料等での定量検証を経ていない暫定的な定性分類で、統計検証の結果ではありません。
-
-（約230字）</p></div>
-        </details>
-      </div>
-    </div>
     
     <div class="card gain">
       <div class="card-body">
@@ -297,13 +267,17 @@ footer p { margin: 0.5rem 0; }
         
         <div class="metrics"><div><div class="m-label">PER</div><div class="m-value">54.1倍</div></div><div><div class="m-label">PBR</div><div class="m-value">12.44倍</div></div><div><div class="m-label">含み損益</div><div class="m-value">-9.71%</div></div><div><div class="m-label">損益額</div><div class="m-value">-52,799円</div></div></div>
         <div class="badges"></div>
-        <ul class="machine-facts"><li>[macro] SOXX前営業日比: -1.23%</li><li>[watch] 常時ウォッチ指定銘柄</li><li>[為替感応度・暫定] 輸出系(為替感応度おそらく高)(確信度: 低〜中、投資Botter未検証)</li><li>[開示] 直近35日以内に新規開示なし</li></ul>
+        <ul class="machine-facts"><li>[macro] SOXX前営業日比: +2.40%</li><li>[watch] 常時ウォッチ指定銘柄</li><li>[為替感応度・暫定] 輸出系(為替感応度おそらく高)(確信度: 低〜中、投資Botter未検証)</li><li>[開示] 直近35日以内に新規開示なし</li></ul>
         
         <div class="summary-text"></div>
         
         <details class="more">
           <summary>Claude解釈(考察)を見る</summary>
-          <div class="detail-body"><p>キオクシアホールディングス(285A)は本日+9.40%と大きく動きました。一方、対応する米国半導体ETF(SOXX)は前営業日比-1.23%で、方向が逆向きです。ただしこの銘柄とセクターETFの連動性は「有意だが留保あり」で、無関係なETFでも47.4%の確率で同程度の有意性が出るため、ETFの動きは参考程度にとどまります。今回の変動は業界要因よりも個別材料に依拠している可能性が高い構図です。なお為替感応度は「輸出系・おそらく高」との暫定的な定性分類ですが、決算資料等での定量検証は未実施のため、判断材料としては弱い位置づけです。</p></div>
+          <div class="detail-body"><p>**事実**: キオクシアHD(285A)は本日+9.40%。参照するSOXX(米半導体ETF)は前営業日比+2.40%で、半導体セクター全体が買われた地合いと方向は一致します。ただし上昇率は約4倍で、ETFの動きだけでは説明しきれない乖離があります。
+
+**留意点**: 同銘柄とSOXXの連動は「有意だが留保あり」判定(無関係なETFでも47.4%が同水準で有意になる)のため、セクター連動の解釈は参考程度に留めるのが妥当です。乖離分は個別材料(NAND需給・個社ニュース等)に起因する可能性がありますが、本情報だけでは特定できません。為替については「輸出系(感応度おそらく高)」と暫定分類されていますが、決算資料での定量検証を経ていない定性判断です。
+
+要するに、**セクター要因と個別要因の両方に左右されやすい状況**という整理までが、この情報から言える範囲です。</p></div>
         </details>
       </div>
     </div>
@@ -313,11 +287,11 @@ footer p { margin: 0.5rem 0; }
 
 <section>
   <h2>変化なしの銘柄(圧縮表示)</h2>
-  <div class="lead">機械検知の閾値に達せず、常時ウォッチ指定にも入っていない9銘柄です。</div>
+  <div class="lead">機械検知の閾値に達せず、常時ウォッチ指定にも入っていない10銘柄です。</div>
   <div class="table-scroll">
     <table class="tag-table">
       <tr><th>銘柄</th><th class="num">現在値</th><th class="num">前日比</th><th class="num">含み損益</th><th class="num">配当利回り</th><th class="num">PER</th><th class="num">信用倍率</th></tr>
-      <tr><td class="name-cell">ムゲンエステート<span class="code">3299</span></td><td class="num">1,718円</td><td class="num pl-gain">+1.00%</td><td class="num pl-loss">-8.13%</td><td class="num">6.05%</td><td class="num">8.7倍</td><td class="num">3.17倍</td></tr><tr><td class="name-cell">日本化薬<span class="code">4272</span></td><td class="num">2,068円</td><td class="num pl-loss">-2.25%</td><td class="num pl-gain">+14.86%</td><td class="num">3.19%</td><td class="num">12.8倍</td><td class="num">3.00倍</td></tr><tr><td class="name-cell">JX金属<span class="code">5016</span></td><td class="num">3,574円</td><td class="num pl-gain">+2.11%</td><td class="num pl-loss">-14.14%</td><td class="num">0.56%</td><td class="num">31.7倍</td><td class="num">30.19倍</td></tr><tr><td class="name-cell">Gライト・再エネインフラ<span class="code">509A</span></td><td class="num">71,300円</td><td class="num pl-loss">-0.28%</td><td class="num pl-loss">-10.88%</td><td class="num">5.10%</td><td class="num">—</td><td class="num">—</td></tr><tr><td class="name-cell">DOWA HLDG<span class="code">5714</span></td><td class="num">9,095円</td><td class="num pl-gain">+1.89%</td><td class="num pl-loss">-2.08%</td><td class="num">3.72%</td><td class="num">8.7倍</td><td class="num">45.47倍</td></tr><tr><td class="name-cell">川崎重工業<span class="code">7012</span></td><td class="num">2,404円</td><td class="num pl-loss">-0.68%</td><td class="num pl-loss">-22.41%</td><td class="num">1.66%</td><td class="num">18.6倍</td><td class="num">29.22倍</td></tr><tr><td class="name-cell">三井住友FG<span class="code">8316</span></td><td class="num">6,830円</td><td class="num pl-loss">-0.70%</td><td class="num pl-loss">-2.50%</td><td class="num">1.32%</td><td class="num">15.3倍</td><td class="num">21.46倍</td></tr><tr><td class="name-cell">ミスミグループ本社<span class="code">9962</span></td><td class="num">3,630円</td><td class="num pl-gain">+1.91%</td><td class="num pl-gain">+4.91%</td><td class="num">1.57%</td><td class="num">24.4倍</td><td class="num">3.16倍</td></tr><tr><td class="name-cell">MRK HLDG<span class="code">9980</span></td><td class="num">94円</td><td class="num pl-gain">+0.00%</td><td class="num pl-loss">-6.00%</td><td class="num">1.06%</td><td class="num">9.9倍</td><td class="num">—</td></tr>
+      <tr><td class="name-cell">ムゲンエステート<span class="code">3299</span></td><td class="num">1,718円</td><td class="num pl-gain">+1.00%</td><td class="num pl-loss">-8.13%</td><td class="num">6.05%</td><td class="num">8.7倍</td><td class="num">3.17倍</td></tr><tr><td class="name-cell">日本化薬<span class="code">4272</span></td><td class="num">2,068円</td><td class="num pl-loss">-2.25%</td><td class="num pl-gain">+14.86%</td><td class="num">3.19%</td><td class="num">12.8倍</td><td class="num">3.00倍</td></tr><tr><td class="name-cell">JX金属<span class="code">5016</span></td><td class="num">3,574円</td><td class="num pl-gain">+2.11%</td><td class="num pl-loss">-14.14%</td><td class="num">0.56%</td><td class="num">31.7倍</td><td class="num">30.19倍</td></tr><tr><td class="name-cell">Gライト・再エネインフラ<span class="code">509A</span></td><td class="num">71,300円</td><td class="num pl-loss">-0.28%</td><td class="num pl-loss">-10.88%</td><td class="num">5.10%</td><td class="num">—</td><td class="num">—</td></tr><tr><td class="name-cell">DOWA HLDG<span class="code">5714</span></td><td class="num">9,095円</td><td class="num pl-gain">+1.89%</td><td class="num pl-loss">-2.08%</td><td class="num">3.72%</td><td class="num">8.7倍</td><td class="num">45.47倍</td></tr><tr><td class="name-cell">太陽誘電<span class="code">6976</span></td><td class="num">9,375円</td><td class="num pl-gain">+4.17%</td><td class="num pl-loss">-16.67%</td><td class="num">0.96%</td><td class="num">87.0倍</td><td class="num">6.92倍</td></tr><tr><td class="name-cell">川崎重工業<span class="code">7012</span></td><td class="num">2,404円</td><td class="num pl-loss">-0.68%</td><td class="num pl-loss">-22.41%</td><td class="num">1.66%</td><td class="num">18.6倍</td><td class="num">29.22倍</td></tr><tr><td class="name-cell">三井住友FG<span class="code">8316</span></td><td class="num">6,830円</td><td class="num pl-loss">-0.70%</td><td class="num pl-loss">-2.50%</td><td class="num">1.32%</td><td class="num">15.3倍</td><td class="num">21.46倍</td></tr><tr><td class="name-cell">ミスミグループ本社<span class="code">9962</span></td><td class="num">3,630円</td><td class="num pl-gain">+1.91%</td><td class="num pl-gain">+4.91%</td><td class="num">1.57%</td><td class="num">24.4倍</td><td class="num">3.16倍</td></tr><tr><td class="name-cell">MRK HLDG<span class="code">9980</span></td><td class="num">94円</td><td class="num pl-gain">+0.00%</td><td class="num pl-loss">-6.00%</td><td class="num">1.06%</td><td class="num">9.9倍</td><td class="num">—</td></tr>
     </table>
   </div>
 </section>
