@@ -1,0 +1,495 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>保有銘柄 日次詳報</title>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --washi: #1b1f24;
+    --washi-raised: #22272e;
+    --ink: #e8e2d4;
+    --ink-dim: #a9a297;
+    --indigo: #6fb3c9;
+    --indigo-deep: #8fc7db;
+    --vermilion: #e2725b;
+    --vermilion-bg: rgba(226,114,91,0.14);
+    --matcha: #86c79a;
+    --matcha-bg: rgba(134,199,154,0.14);
+    --gold: #d8b25c;
+    --gold-bg: rgba(216,178,92,0.14);
+    --line: rgba(232,226,212,0.14);
+    --card-shadow: 0 1px 2px rgba(0,0,0,0.4);
+  }
+}
+:root[data-theme="dark"] {
+  --washi: #1b1f24;
+  --washi-raised: #22272e;
+  --ink: #e8e2d4;
+  --ink-dim: #a9a297;
+  --indigo: #6fb3c9;
+  --indigo-deep: #8fc7db;
+  --vermilion: #e2725b;
+  --vermilion-bg: rgba(226,114,91,0.14);
+  --matcha: #86c79a;
+  --matcha-bg: rgba(134,199,154,0.14);
+  --gold: #d8b25c;
+  --gold-bg: rgba(216,178,92,0.14);
+  --line: rgba(232,226,212,0.14);
+  --card-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+:root {
+  --washi: #f6f2e8;
+  --washi-raised: #fdfbf6;
+  --ink: #23303a;
+  --ink-dim: #6b6459;
+  --indigo: #1f5e73;
+  --indigo-deep: #163f4d;
+  --vermilion: #b5402e;
+  --vermilion-bg: rgba(181,64,46,0.08);
+  --matcha: #3d7052;
+  --matcha-bg: rgba(61,112,82,0.09);
+  --gold: #97741f;
+  --gold-bg: rgba(151,116,31,0.09);
+  --line: rgba(35,48,58,0.14);
+  --card-shadow: 0 1px 3px rgba(35,30,20,0.08);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--washi);
+  color: var(--ink);
+  font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans CJK JP", sans-serif;
+  line-height: 1.75;
+  font-feature-settings: "palt";
+}
+
+.wrap { max-width: 1040px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+
+h1, h2, h3 {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif CJK JP", serif;
+  font-weight: 600;
+  text-wrap: balance;
+  margin: 0;
+}
+
+.masthead { border-bottom: 1px solid var(--line); padding-bottom: 1.75rem; margin-bottom: 2rem; }
+.masthead .top-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 1.5rem; flex-wrap: wrap; }
+.masthead .eyebrow { font-size: 0.78rem; letter-spacing: 0.18em; color: var(--indigo); font-weight: 600; }
+.masthead h1 { font-size: clamp(1.5rem, 4vw, 2.1rem); margin-top: 0.5rem; color: var(--ink); }
+.masthead .sub { margin-top: 0.6rem; color: var(--ink-dim); font-size: 0.93rem; max-width: 640px; }
+.masthead .meta-block { text-align: right; font-size: 0.72rem; color: var(--ink-dim); line-height: 1.9; font-family: ui-monospace, "SF Mono", Menlo, monospace; white-space: nowrap; }
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 2rem 0;
+}
+.stat { background: var(--washi-raised); padding: 1.1rem 1.2rem; }
+.stat .label { font-size: 0.74rem; color: var(--ink-dim); letter-spacing: 0.05em; }
+.stat .value { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; font-size: 1.4rem; font-variant-numeric: tabular-nums; margin-top: 0.3rem; }
+.stat .value.loss { color: var(--vermilion); }
+.stat .value.gain { color: var(--matcha); }
+.stat .footnote { font-size: 0.64rem; color: var(--ink-dim); margin-top: 0.2rem; }
+
+section { margin: 2.6rem 0; }
+section > h2 { font-size: 1.2rem; border-left: 4px solid var(--indigo); padding-left: 0.7rem; margin-bottom: 1rem; }
+section > .lead { color: var(--ink-dim); font-size: 0.9rem; margin-bottom: 1.2rem; }
+
+.banner {
+  border-radius: 10px;
+  padding: 1rem 1.3rem;
+  box-shadow: var(--card-shadow);
+  border: 1px solid;
+  font-size: 0.9rem;
+}
+.banner.tone-alert { background: var(--vermilion-bg); border-color: var(--vermilion); }
+.banner.tone-calm { background: var(--matcha-bg); border-color: var(--matcha); }
+.banner.tone-warn { background: var(--gold-bg); border-color: var(--gold); }
+.banner + .banner { margin-top: 0.7rem; }
+
+.pill {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.pill.edge-yes { background: var(--matcha-bg); color: var(--matcha); }
+.pill.edge-half { background: var(--gold-bg); color: var(--gold); }
+.pill.edge-no { background: var(--line); color: var(--ink-dim); }
+/* margin-*(信用倍率の閾値バッジ)は、投資Botterで検証されていない世間の
+   経験則であることをedge-*(実証エッジ)と視覚的に区別するため、塗りつぶし
+   ではなく破線の枠のみにしている(方針4: 通説と実証データの区別) */
+.pill.margin-high, .pill.margin-mid, .pill.margin-low {
+  background: transparent;
+  border: 1px dashed var(--ink-dim);
+  color: var(--ink-dim);
+}
+.pill.na { background: var(--line); color: var(--ink-dim); }
+
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1.1rem; }
+
+.card { background: var(--washi-raised); border: 1px solid var(--line); border-left: 4px solid var(--vermilion); border-radius: 12px; overflow: hidden; box-shadow: var(--card-shadow); }
+.card.gain { border-left-color: var(--matcha); }
+.card-body { padding: 1.1rem 1.2rem 1.3rem; }
+.card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.8rem; }
+.card-head .code { font-size: 0.74rem; color: var(--ink-dim); font-variant-numeric: tabular-nums; }
+.card-head .name { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; font-size: 1.08rem; margin-top: 0.1rem; }
+.card-head .pnl { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.card-head .pnl .pct { font-size: 1.1rem; font-weight: 700; }
+.card-head .pnl .amt { font-size: 0.74rem; color: var(--ink-dim); margin-top: 0.1rem; }
+.pnl.loss .pct { color: var(--vermilion); }
+.pnl.gain .pct { color: var(--matcha); }
+
+.spark-row { display: flex; align-items: center; gap: 0.8rem; margin: 0.7rem 0; }
+.spark-row svg.spark { width: 140px; height: 34px; flex: none; }
+.spark-row .spark-note { font-size: 0.7rem; color: var(--ink-dim); line-height: 1.5; }
+
+.metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin: 0.85rem 0; font-size: 0.76rem; }
+.metrics div { text-align: center; padding: 0.4rem 0.2rem; background: var(--washi); border-radius: 6px; }
+.metrics .m-label { color: var(--ink-dim); font-size: 0.66rem; }
+.metrics .m-value { font-variant-numeric: tabular-nums; font-weight: 600; margin-top: 0.15rem; }
+
+.badges { margin: 0.6rem 0 0.2rem; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+.machine-facts { list-style: none; margin: 0.7rem 0 0; padding: 0; font-size: 0.78rem; color: var(--ink-dim); }
+.machine-facts li { padding: 0.35rem 0; border-bottom: 1px dashed var(--line); font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.74rem; }
+.machine-facts li:last-child { border-bottom: none; }
+
+.summary-text { font-size: 0.86rem; color: var(--ink); margin-top: 0.7rem; }
+
+details.more { margin-top: 0.7rem; }
+details.more summary { cursor: pointer; font-size: 0.8rem; color: var(--indigo); font-weight: 600; }
+details.more summary:hover { color: var(--indigo-deep); }
+details.more .detail-body { margin-top: 0.7rem; font-size: 0.85rem; border-top: 1px dashed var(--line); padding-top: 0.7rem; }
+details.more .detail-body h4 { font-size: 0.76rem; color: var(--ink-dim); margin: 0.7rem 0 0.25rem; letter-spacing: 0.03em; }
+details.more .detail-body h4:first-child { margin-top: 0; }
+details.more .detail-body p { margin: 0.4rem 0; }
+details.more .sources { font-size: 0.7rem; color: var(--ink-dim); margin-top: 0.6rem; }
+details.more .sources a { color: var(--ink-dim); }
+
+.tag-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.tag-table th, .tag-table td { text-align: left; padding: 0.5rem 0.65rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+.tag-table th { color: var(--ink-dim); font-weight: 500; font-size: 0.72rem; letter-spacing: 0.03em; position: sticky; top: 0; background: var(--washi-raised); }
+.tag-table td.num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.tag-table td.name-cell { white-space: nowrap; }
+.tag-table td.name-cell .code { color: var(--ink-dim); font-size: 0.7rem; margin-left: 0.3rem; }
+.tag-table tr:last-child td { border-bottom: none; }
+.table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--washi-raised); box-shadow: var(--card-shadow); }
+.table-scroll .tag-table { min-width: 760px; }
+.pl-loss { color: var(--vermilion); }
+.pl-gain { color: var(--matcha); }
+
+footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: 0.76rem; color: var(--ink-dim); }
+footer h4 { font-size: 0.78rem; color: var(--ink-dim); margin: 1rem 0 0.35rem; }
+footer ul { margin: 0 0 0.4rem; padding-left: 1.2rem; }
+footer p { margin: 0.5rem 0; }
+
+@media (max-width: 640px) {
+  .wrap { padding: 1.5rem 1rem 3rem; }
+  .card-grid { grid-template-columns: 1fr; }
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .masthead h1 { font-size: 1.4rem; }
+  section { margin: 1.8rem 0; }
+}
+
+@media (max-width: 480px) {
+  .metrics { grid-template-columns: repeat(2, 1fr); }
+  .masthead .top-row { flex-direction: column; }
+  .masthead .meta-block { text-align: left; white-space: normal; line-height: 1.7; }
+  .spark-row { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+  .spark-row svg.spark { width: 100%; max-width: 220px; }
+  .card-head { flex-wrap: wrap; }
+  .card-head .pnl { text-align: left; white-space: normal; }
+  .stat-grid { grid-template-columns: 1fr 1fr; }
+  .badges .pill { font-size: 0.68rem; }
+}
+</style>
+
+<div class="wrap">
+
+<div class="masthead">
+  <div class="top-row">
+    <div>
+      <div class="eyebrow">DAILY DIGEST · 銘柄相談ツール</div>
+      <h1>保有銘柄 日次詳報</h1>
+      <div class="sub">機械的な変化検知で引っかかった銘柄に加えて、常時ウォッチ指定銘柄を深掘りし、残りは1行に圧縮した日次版です。</div>
+    </div>
+    <div class="meta-block">
+      2026-10-16 07:33 生成<br>
+      データソース: データ取得.py(yfinance)
+    </div>
+  </div>
+</div>
+
+
+
+<section>
+  <h2>前日の米国市場(実証エッジ)</h2>
+  <div class="lead">投資Botterで実証済みの数少ないエッジの一つ。前日の米国市場の動きは、翌営業日の日本株全体とOOS的中率62.3%で連動することが検証されている(方向性の連動傾向であり、個別銘柄の値動きを予測するものではない)。</div>
+  <div class="stat-grid">
+    <div class="stat"><div class="label">S&amp;P500(前日比)</div><div class="value gain">+0.33%</div></div>
+    <div class="stat"><div class="label">日経平均(前日比)</div><div class="value loss">-0.05%</div></div>
+    <div class="stat"><div class="label">ドル円</div><div class="value">158.07円</div></div>
+    <div class="stat"><div class="label">as of</div><div class="value" style="font-size:1rem;">2026-10-15</div></div>
+  </div>
+</section>
+
+<section>
+  <div class="banner tone-alert">本日、7銘柄を深掘りしました: 太陽誘電、DOWA HLDG、6594、Gライト・再エネインフラ、川崎重工業、キオクシアホールディングス、JX金属</div>
+</section>
+
+<section>
+  <h2>本日の深掘り(7銘柄)</h2>
+  <div class="lead">機械検知で引っかかった銘柄+常時ウォッチ指定銘柄。</div>
+  <div class="card-grid">
+    
+    <div class="card loss">
+      <div class="card-body">
+        <div class="card-head">
+          <div>
+            <div class="code">6976 <span class="pill edge-yes">Tier A: 頑健</span></div>
+            <div class="name">太陽誘電</div>
+          </div>
+          <div class="pnl loss">
+            <div class="pct">-10.08%</div>
+            <div class="amt">前日終値10,970円→本日9,864円</div>
+          </div>
+        </div>
+        
+        <div class="metrics"><div><div class="m-label">配当利回り</div><div class="m-value">0.82%</div></div><div><div class="m-label">PER</div><div class="m-value">81.6倍</div></div><div><div class="m-label">PBR</div><div class="m-value">3.49倍</div></div><div><div class="m-label">含み損益</div><div class="m-value">-12.32%</div></div><div><div class="m-label">損益額</div><div class="m-value">-2,772円</div></div></div>
+        <div class="badges"></div>
+        <ul class="machine-facts"><li>価格が前回比-10.08%変化(10970.0→9864.0)</li><li>[macro] SOXX前営業日比: -0.91%</li><li>[為替感応度・暫定] 輸出系(為替感応度高)(確信度: 中〜高、投資Botter未検証)</li><li>[開示] 直近35日以内に新規開示なし</li></ul>
+        
+        <div class="summary-text"></div>
+        
+        <details class="more">
+          <summary>Claude解釈(考察)を見る</summary>
+          <div class="detail-body"><p>本日、太陽誘電(6976)は-10.08%下落しました。連動性が統計的に確認されているSOXX(前営業日比-0.91%)と方向は同じで、ねじれはありません。ただし下落幅はSOXXの約11倍で、米国半導体セクターの動きだけでは説明しにくい大きさです。個別の材料(開示・決算関連など)や国内市場全体の動きも影響した可能性があります。為替は「輸出系(為替感応度高)」に暫定分類されていますが、定量的な検証はまだで、今回の下落にどれだけ寄与したかは未確認です。
+
+※個別の開示を確認しようとしましたが、ツールの権限がなかったため、材料の有無はまだ確認していません。</p></div>
+        </details>
+      </div>
+    </div>
+    
+    <div class="card loss">
+      <div class="card-body">
+        <div class="card-head">
+          <div>
+            <div class="code">5714 <span class="pill margin-mid">Tier B: 留保あり</span></div>
+            <div class="name">DOWA HLDG</div>
+          </div>
+          <div class="pnl loss">
+            <div class="pct">-5.25%</div>
+            <div class="amt">前日終値8,536円→本日8,088円</div>
+          </div>
+        </div>
+        
+        <div class="metrics"><div><div class="m-label">配当利回り</div><div class="m-value">3.96%</div></div><div><div class="m-label">PER</div><div class="m-value">6.4倍</div></div><div><div class="m-label">PBR</div><div class="m-value">1.04倍</div></div><div><div class="m-label">含み損益</div><div class="m-value">-12.92%</div></div><div><div class="m-label">損益額</div><div class="m-value">-1,200円</div></div></div>
+        <div class="badges"></div>
+        <ul class="machine-facts"><li>価格が前回比-5.25%変化(8536.0→8088.0)</li><li>[macro] XLB前営業日比: +1.79%</li><li>[為替感応度・暫定] 輸出系(コモディティ価格連動)(確信度: 中、投資Botter未検証)</li><li>[開示] 直近35日以内に新規開示なし</li></ul>
+        
+        <div class="summary-text"></div>
+        
+        <details class="more">
+          <summary>Claude解釈(考察)を見る</summary>
+          <div class="detail-body"><p>DOWA HLDG(5714)の本日の株価は-5.25%でした。一方、米国の素材セクターETF(XLB)の前営業日比は+1.79%で、両者は逆の方向に動いています。セクターETFとの統計的な連動は「有意だが留保あり」です。無関係なETFでも同じ程度に有意になる確率が50.2%あるため、本日の動きの違いを説明する材料としての重みは小さいと考えます。為替感応度は「輸出系(コモディティ価格連動)」と暫定的に分類されています(確信度は中、定量的な検証はまだ)。このため、為替や非鉄金属の価格に左右されやすい状況と整理できます。</p></div>
+        </details>
+      </div>
+    </div>
+    
+    <div class="card loss">
+      <div class="card-body">
+        <div class="card-head">
+          <div>
+            <div class="code">6594 <span class="pill na">Tier C: 非該当</span></div>
+            <div class="name">6594</div>
+          </div>
+          <div class="pnl loss">
+            <div class="pct">-6.24%</div>
+            <div class="amt">前日終値1,940円→本日1,819円</div>
+          </div>
+        </div>
+        
+        <div class="metrics"><div><div class="m-label">配当利回り</div><div class="m-value">0.00%</div></div><div><div class="m-label">PBR</div><div class="m-value">2.63倍</div></div><div><div class="m-label">含み損益</div><div class="m-value">-16.41%</div></div><div><div class="m-label">損益額</div><div class="m-value">-35,700円</div></div></div>
+        <div class="badges"></div>
+        <ul class="machine-facts"><li>価格が前回比-6.24%変化(1940.0→1819.0)</li><li>[開示] 直近35日以内に新規開示なし</li></ul>
+        
+        <div class="summary-text"></div>
+        
+        <details class="more">
+          <summary>Claude解釈(考察)を見る</summary>
+          <div class="detail-body"><p>ニデック（6594）は本日、前回比6.24%下落し、1,940円から1,819円になりました（-121円）。本日の下落を直接引き起こした材料は確認できていません。ニュース検索と開示データベースの照会がどちらも許可されず、実行できなかったためです。
+
+背景として、同社には2025年に不適切会計の疑いが浮上し、第三者委員会による調査や監査意見の問題が続いてきました。このため株価は、会計問題に関する開示や、10月下旬に予定される中間決算の内容などに左右されやすい状況にあります。</p></div>
+        </details>
+      </div>
+    </div>
+    
+    <div class="card loss">
+      <div class="card-body">
+        <div class="card-head">
+          <div>
+            <div class="code">509A <span class="pill na">Tier C: 非該当</span></div>
+            <div class="name">Gライト・再エネインフラ</div>
+          </div>
+          <div class="pnl loss">
+            <div class="pct">-0.29%</div>
+            <div class="amt">前日終値70,000円→本日69,800円</div>
+          </div>
+        </div>
+        
+        <div class="metrics"><div><div class="m-label">配当利回り</div><div class="m-value">0.99%</div></div><div><div class="m-label">含み損益</div><div class="m-value">-12.75%</div></div><div><div class="m-label">損益額</div><div class="m-value">-10,200円</div></div></div>
+        <div class="badges"></div>
+        <ul class="machine-facts"><li>新規TDnet開示: （変更・訂正）「太陽光発電所月次発電電力量実績及び出力制御に関するお知らせ」における「予想発電量」の記載方法の変更および訂正に関するお知らせ</li><li>新規TDnet開示: 太陽光発電所月次発電電力量実績及び出力制御に関するお知らせ（2026年9月）</li><li>[開示] 新規開示を2件検知: （変更・訂正）「太陽光発電所月次発電電力量実績及び出力制御に関するお知らせ」における「予想発電量」の記載方法の変更および訂正に関するお知らせ、太陽光発電所月次発電電力量実績及び出力制御に関するお知らせ（2026年9月）</li></ul>
+        <div class="banner tone-calm" style="margin-top:0.6rem;"><p>【適時開示】（変更・訂正）「太陽光発電所月次発電電力量実績及び出力制御に関するお知らせ」における「予想発電量」の記載方法の変更および訂正に関するお知らせ<br><strong>要約（約200字）</strong>
+
+グリーンライト・再エネインフラ投資法人（509A）は2026年10月15日、毎月出している発電量のお知らせに載せる「予想発電量」の計算方法を、2026年9月分から変えると公表しました。これまでの予想値は第三者の専門家による予測で、出力制御（電力会社の要請で発電を抑えること）による減少分を含んでいませんでした。今後は、O&amp;M業者（発電所の運営・保守を請け負う会社）が算出した月別の予想出力制御率を加味した数値にします。あわせて、過去分の予想値・差異・予実対比を訂正しました。たとえば5月の予実対比は80.8%から83.9%に、3月は93.0%から95.5%に変わりました。実績発電量そのものは訂正されていません。
+
+<strong>補足（事実の確認）</strong>
+- 本文には「2026年3月分〜8月分を訂正」とありますが、PDFの訂正表に載っているのは3月〜7月分だけで、8月分の数値はこの資料にありません。
+- 4月と5月の差異には注記があります。栃木の上三川発電所で2026年4月7日にケーブルの盗難があり、それ以降は一部稼働を停止しています。</p><p>【適時開示】太陽光発電所月次発電電力量実績及び出力制御に関するお知らせ（2026年9月）<br><strong>要約（約200字）</strong>
+
+グリーンライト・再エネインフラ投資法人（509A）は2026年10月15日、9月分の太陽光発電の実績と出力制御の状況を公表しました。保有する13物件の9月の発電量（速報値）は1,856,246kWhで、予想に対して70.3%でした。物件ごとでは54.0%〜90.9%と差があり、千葉の3物件は60%を下回りました。6〜9月の合計は予想比85.7%です。9月の出力制御（電力会社の指示で発電を止めること）は東北電力エリアの4物件で計8日あり、1回あたり4.0〜7.0時間止まりました。
+
+<strong>補足（原文の事実関係）</strong>
+- 6〜8月の数値は電力会社の売電明細にもとづく「確報」、9月は自社システムによる「速報」で、後で売電明細の数値と違う場合があると書かれています。
+- 3章の見出しは「2026年8月度」ですが、表の中身は9月分と4〜9月の累計です。原文の表記ゆれとみられます。
+- 「オンライン代理制御」（ほかの発電所の代わりに止めた分を、2〜3か月後にお金で精算するしくみ）による影響はまだ決まっていません。実施された場合は、後日精算金を受け取る見込みとされています。</p></div>
+        <div class="summary-text"></div>
+        
+        <details class="more">
+          <summary>Claude解釈(考察)を見る</summary>
+          <div class="detail-body"><p>本日のGライト・再エネインフラ（509A）の株価は-0.29%でした。同じ日にTDnetで2件の開示がありました。1件目は2026年9月の月次発電電力量の実績と出力制御（電力会社の指示で発電を止めること）のお知らせ、2件目は過去の同じお知らせにある「予想発電量」の書き方を変え、内容を訂正したというお知らせです。この銘柄は、発電量の実績と予想の差、出力制御の頻度、日照などの天候、開示が信頼できるかどうか、に左右されやすい状況です。なお、今回の値動きとこれらの開示との因果関係は確認していません。</p></div>
+        </details>
+      </div>
+    </div>
+    
+    <div class="card loss">
+      <div class="card-body">
+        <div class="card-head">
+          <div>
+            <div class="code">7012 <span class="pill margin-mid">Tier B: 留保あり</span></div>
+            <div class="name">川崎重工業</div>
+          </div>
+          <div class="pnl loss">
+            <div class="pct">-5.00%</div>
+            <div class="amt">前日終値2,258円→本日2,145円</div>
+          </div>
+        </div>
+        
+        <div class="metrics"><div><div class="m-label">配当利回り</div><div class="m-value">1.74%</div></div><div><div class="m-label">PER</div><div class="m-value">15.8倍</div></div><div><div class="m-label">PBR</div><div class="m-value">2.03倍</div></div><div><div class="m-label">含み損益</div><div class="m-value">-30.78%</div></div><div><div class="m-label">損益額</div><div class="m-value">-95,400円</div></div></div>
+        <div class="badges"></div>
+        <ul class="machine-facts"><li>価格が前回比-5.00%変化(2258.0→2145.0)</li><li>[macro] XLI前営業日比: +0.51%</li><li>[為替感応度・暫定] 輸出系(為替感応度中〜高、防衛は国内向けの側面も)(確信度: 中、投資Botter未検証)</li><li>[開示] 新規開示を2件検知: グループビジョン2030 進捗報告会（1/4）、グループビジョン2030 進捗報告会（2/4）</li></ul>
+        <div class="banner tone-calm" style="margin-top:0.6rem;"><p>【適時開示】グループビジョン2030 進捗報告会（1/4）<br><strong>要約（約200字）</strong>
+
+川崎重工業(7012)は2026年10月6日に「グループビジョン2030進捗報告会」の資料を公表した。2026年度の見込みは売上収益2兆5,600億円、事業利益1,800億円。2030年度の目標は売上収益3.3兆円超、事業利益3,300億円超（事業利益率10%超）に更新された。7月に約2,000億円の資本性調達（公募増資とCBで各約1,000億円）を実施し、半導体用ロボット、ガスタービン、水素などへ投資する。防衛事業は2030年度の売上見通しを約7,000〜8,000億円に引き上げた（前回は5,000〜7,000億円）。
+
+<strong>補足</strong>
+- 目次には「①全社の重点投資方針／②防衛事業／③エネルギー事業／④フィジカルAI」の4項目がありますが、このPDF（全21ページ）に入っているのは①と②だけです。③と④は別のファイルに分かれている可能性があります。
+- 上の数値はすべて会社が示した計画・見通しで、確定した実績ではありません。</p><p>【適時開示】グループビジョン2030 進捗報告会（2/4）<br>川崎重工業（7012）の説明会資料のうち、エネルギー事業の章（22〜49ページ、全28ページ）の要約です。
+
+<strong>要約（約200字）</strong>
+川崎重工は、AIやデータセンターの普及で電力需要が増えているという認識を示し、中小型ガスタービンでデータセンター向け市場に力を入れる方針を示しました。生産能力を増やすための投資として、ガスタービンに約600億円（中型約400億円、小型約200億円）、ガスエンジンに約170億円を計画しています。ガスタービンの受注は、2026年度に2023年度比約1.5倍となる見込みです。会社の計画値として、エネルギー・環境ソリューション事業の規模は2040年度までの累計で8兆円、CO2回収事業の売上は2040年に700億円としています。このほか、液化水素の供給網づくりで欧州・カナダなどと覚書を結んだことや、Bosch Rexrothとの協業も紹介されています。
+
+<strong>補足</strong>
+- 文中の数値（1.5倍、8兆円、700億円など）は、すべて資料に書かれた会社自身の計画・見込みです。私の予測ではありません。
+- ページ番号が22から始まっているので、1〜21ページ（全社の重点投資方針、防衛事業）と50ページ以降（フィジカルAI）は、このファイルには入っていません。</p></div>
+        <div class="summary-text"></div>
+        
+        <details class="more">
+          <summary>Claude解釈(考察)を見る</summary>
+          <div class="detail-body"><p>川崎重工業(7012)は本日、前日比-5.00%で引けました。米国の産業セクターETF(XLI)は前営業日比+0.51%で、両者は逆の方向に動いています。セクターとの連動は統計的に有意と判定されていますが、期間によっては有意にならない区間もあります。このため、今回の逆行を判断するときの材料としての重みは小さめです。今回の値動きは、米国セクターの動きよりも、為替（輸出の要素は中〜高、防衛事業は国内向けの面あり）や個別の材料の影響を受けやすい状況として整理できます。ただし、為替感応度は決算資料などで数値を確かめていない暫定的な分類です。
+
+※本日の適時開示やイベントを確かめようとしましたが、ツールの権限が許可されていなかったため、個別の材料があったかどうかは確認できていません。</p></div>
+        </details>
+      </div>
+    </div>
+    
+    <div class="card loss">
+      <div class="card-body">
+        <div class="card-head">
+          <div>
+            <div class="code">285A <span class="pill margin-mid">Tier B: 留保あり</span></div>
+            <div class="name">キオクシアホールディングス</div>
+          </div>
+          <div class="pnl loss">
+            <div class="pct">-12.32%</div>
+            <div class="amt">前日終値14,690円→本日12,880円</div>
+          </div>
+        </div>
+        
+        <div class="metrics"><div><div class="m-label">配当利回り</div><div class="m-value">0.00%</div></div><div><div class="m-label">PER</div><div class="m-value">17.6倍</div></div><div><div class="m-label">PBR</div><div class="m-value">8.81倍</div></div><div><div class="m-label">含み損益</div><div class="m-value">-35.34%</div></div><div><div class="m-label">損益額</div><div class="m-value">-211,207円</div></div></div>
+        <div class="badges"></div>
+        <ul class="machine-facts"><li>価格が前回比-12.32%変化(14690.0→12880.0)</li><li>[macro] SOXX前営業日比: -0.91%</li><li>[watch] 常時ウォッチ指定銘柄</li><li>[為替感応度・暫定] 輸出系(為替感応度おそらく高)(確信度: 低〜中、投資Botter未検証)</li><li>[開示] 直近35日以内に新規開示なし</li></ul>
+        
+        <div class="summary-text"></div>
+        
+        <details class="more">
+          <summary>Claude解釈(考察)を見る</summary>
+          <div class="detail-body"><p>キオクシアHD（285A）は本日 **-12.32%** でした。一方、半導体セクターETF（SOXX）の前営業日比は **-0.91%** にとどまっています。下落幅は約11ポイント大きく、セクター全体の動きだけでは説明しにくい規模です。SOXXとの連動は統計上「有意だが留保あり」で、無関係なETFでも47.4%の確率で同程度になるため、参考程度の扱いです。為替感応度は「輸出系（おそらく高）」と推定されていますが、定量的な検証を経ていない暫定分類（確信度：低〜中）です。下落の個別要因は、今回の情報からは特定できていません。</p></div>
+        </details>
+      </div>
+    </div>
+    
+    <div class="card loss">
+      <div class="card-body">
+        <div class="card-head">
+          <div>
+            <div class="code">5016 <span class="pill na">Tier C: 非該当</span></div>
+            <div class="name">JX金属</div>
+          </div>
+          <div class="pnl loss">
+            <div class="pct">-9.74%</div>
+            <div class="amt">前日終値3,460円→本日3,123円</div>
+          </div>
+        </div>
+        
+        <div class="metrics"><div><div class="m-label">配当利回り</div><div class="m-value">1.01%</div></div><div><div class="m-label">PER</div><div class="m-value">23.3倍</div></div><div><div class="m-label">PBR</div><div class="m-value">4.54倍</div></div><div><div class="m-label">含み損益</div><div class="m-value">-24.97%</div></div><div><div class="m-label">損益額</div><div class="m-value">-207,900円</div></div></div>
+        <div class="badges"></div>
+        <ul class="machine-facts"><li>価格が前回比-9.74%変化(3460.0→3123.0)</li><li>[開示] 直近35日以内に新規開示なし</li></ul>
+        
+        <div class="summary-text"></div>
+        
+        <details class="more">
+          <summary>Claude解釈(考察)を見る</summary>
+          <div class="detail-body"><p>本日、JX金属(5016)は前回比-9.74%（3,460円→3,123円）と大きく下落しました。ただし、今回は検索ツールの使用が許可されなかったため、本日の下落につながったニュースや適時開示は確認できていません。原因は不明です。
+
+一般的に、この銘柄の値動きを左右しやすい要因は次のとおりです。
+- **半導体関連銘柄としての評価**：半導体材料（スパッタリングターゲット等）が収益の柱です。
+- **大株主ENEOSの保有株**：保有株の売却が意識されると、需給（売り買いのバランス）に影響が出ます。
+- **決算・業績見通し**：発表のたびに株価が反応しやすい銘柄です。
+
+原因を特定するには、TDnetの適時開示と当日のニュースの確認が必要です。</p></div>
+        </details>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<section>
+  <h2>変化なしの銘柄(圧縮表示)</h2>
+  <div class="lead">機械検知の閾値に達せず、常時ウォッチ指定にも入っていない5銘柄です。</div>
+  <div class="table-scroll">
+    <table class="tag-table">
+      <tr><th>銘柄</th><th class="num">現在値</th><th class="num">前日比</th><th class="num">含み損益</th><th class="num">配当利回り</th><th class="num">PER</th><th class="num">信用倍率</th></tr>
+      <tr><td class="name-cell">ムゲンエステート<span class="code">3299</span></td><td class="num">1,630円</td><td class="num pl-gain">+0.62%</td><td class="num pl-loss">-12.83%</td><td class="num">6.42%</td><td class="num">8.2倍</td><td class="num">2.34倍</td></tr><tr><td class="name-cell">日本化薬<span class="code">4272</span></td><td class="num">2,134円</td><td class="num pl-loss">-2.00%</td><td class="num pl-gain">+18.58%</td><td class="num">3.17%</td><td class="num">12.4倍</td><td class="num">6.56倍</td></tr><tr><td class="name-cell">三井住友FG<span class="code">8316</span></td><td class="num">3,222円</td><td class="num pl-loss">-1.92%</td><td class="num pl-loss">-4.42%</td><td class="num">2.74%</td><td class="num">14.7倍</td><td class="num">25.33倍</td></tr><tr><td class="name-cell">三井住友FG<span class="code">8316</span></td><td class="num">3,222円</td><td class="num pl-loss">-1.92%</td><td class="num pl-loss">-4.42%</td><td class="num">2.74%</td><td class="num">14.7倍</td><td class="num">25.33倍</td></tr><tr><td class="name-cell">MRK HLDG<span class="code">9980</span></td><td class="num">88円</td><td class="num pl-loss">-1.12%</td><td class="num pl-loss">-12.00%</td><td class="num">1.12%</td><td class="num">8.0倍</td><td class="num">—</td></tr>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <p>このレポートは投資Botterプロジェクト「銘柄相談ツール」の日次自動診断です。特定の売買を推奨するものではありません。株価の上昇・下降の方向性についての予測・示唆は一切含んでいません。</p>
+  
+</footer>
+
+</div>
