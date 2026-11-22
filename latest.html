@@ -224,7 +224,7 @@ footer p { margin: 0.5rem 0; }
       <div class="sub">機械的な変化検知で引っかかった銘柄に加えて、常時ウォッチ指定銘柄を深掘りし、残りは1行に圧縮した日次版です。</div>
     </div>
     <div class="meta-block">
-      2026-11-20 07:31 生成<br>
+      2026-11-23 07:31 生成<br>
       データソース: データ取得.py(yfinance)
     </div>
   </div>
@@ -236,21 +236,101 @@ footer p { margin: 0.5rem 0; }
   <h2>前日の米国市場(実証エッジ)</h2>
   <div class="lead">投資Botterで実証済みの数少ないエッジの一つ。前日の米国市場の動きは、翌営業日の日本株全体とOOS的中率62.3%で連動することが検証されている(方向性の連動傾向であり、個別銘柄の値動きを予測するものではない)。</div>
   <div class="stat-grid">
-    <div class="stat"><div class="label">S&amp;P500(前日比)</div><div class="value loss">-2.02%</div></div>
-    <div class="stat"><div class="label">日経平均(前日比)</div><div class="value gain">+0.28%</div></div>
-    <div class="stat"><div class="label">ドル円</div><div class="value">159.65円</div></div>
-    <div class="stat"><div class="label">as of</div><div class="value" style="font-size:1rem;">2026-11-19</div></div>
+    <div class="stat"><div class="label">S&amp;P500(前日比)</div><div class="value loss">-3.70%</div></div>
+    <div class="stat"><div class="label">日経平均(前日比)</div><div class="value loss">-5.06%</div></div>
+    <div class="stat"><div class="label">ドル円</div><div class="value">158.54円</div></div>
+    <div class="stat"><div class="label">as of</div><div class="value" style="font-size:1rem;">2026-11-22</div></div>
   </div>
 </section>
 
 <section>
-  <div class="banner tone-alert">本日、3銘柄を深掘りしました: JX金属、太陽誘電、キオクシアホールディングス</div>
+  <div class="banner tone-alert">本日、5銘柄を深掘りしました: 太陽誘電、DOWA HLDG、川崎重工業、JX金属、キオクシアホールディングス</div>
 </section>
 
 <section>
-  <h2>本日の深掘り(3銘柄)</h2>
+  <h2>本日の深掘り(5銘柄)</h2>
   <div class="lead">機械検知で引っかかった銘柄+常時ウォッチ指定銘柄。</div>
   <div class="card-grid">
+    
+    <div class="card loss">
+      <div class="card-body">
+        <div class="card-head">
+          <div>
+            <div class="code">6976 <span class="pill edge-yes">Tier A: 頑健</span></div>
+            <div class="name">太陽誘電</div>
+          </div>
+          <div class="pnl loss">
+            <div class="pct">-8.41%</div>
+            <div class="amt">前日終値6,755円→本日6,187円</div>
+          </div>
+        </div>
+        
+        <div class="metrics"><div><div class="m-label">配当利回り</div><div class="m-value">1.45%</div></div><div><div class="m-label">PER</div><div class="m-value">48.8倍</div></div><div><div class="m-label">PBR</div><div class="m-value">2.15倍</div></div><div><div class="m-label">含み損益</div><div class="m-value">-45.00%</div></div><div><div class="m-label">損益額</div><div class="m-value">-10,126円</div></div></div>
+        <div class="badges"></div>
+        <ul class="machine-facts"><li>価格が前回比-8.41%変化(6755.0→6187.0)</li><li>[macro] SOXX前営業日比: -10.55%</li><li>[為替感応度・暫定] 輸出系(為替感応度高)(確信度: 中〜高、投資Botter未検証)</li><li>[開示] 直近35日以内に新規開示なし</li></ul>
+        
+        <div class="summary-text"></div>
+        
+        <details class="more">
+          <summary>Claude解釈(考察)を見る</summary>
+          <div class="detail-body"><p>本日、太陽誘電(6976)は-8.41%でした。連動先とされる米国半導体ETF(SOXX)の前営業日比-10.55%と同じ方向の下落で、ねじれ(逆方向の動き)は検知されていません。同社株は投資Botterの検証で米国セクターとの統計的な連動が確認されています。そのため本日の値動きは、米国半導体セクター全体の動きの影響を受けやすい状況として整理できます。為替の影響を受けやすい輸出系との分類もありますが、統計的な検証を経ていない暫定的な見立てにとどまります。</p></div>
+        </details>
+      </div>
+    </div>
+    
+    <div class="card loss">
+      <div class="card-body">
+        <div class="card-head">
+          <div>
+            <div class="code">5714 <span class="pill margin-mid">Tier B: 留保あり</span></div>
+            <div class="name">DOWA HLDG</div>
+          </div>
+          <div class="pnl loss">
+            <div class="pct">-5.82%</div>
+            <div class="amt">前日終値7,566円→本日7,126円</div>
+          </div>
+        </div>
+        
+        <div class="metrics"><div><div class="m-label">配当利回り</div><div class="m-value">5.82%</div></div><div><div class="m-label">PER</div><div class="m-value">4.7倍</div></div><div><div class="m-label">PBR</div><div class="m-value">0.87倍</div></div><div><div class="m-label">含み損益</div><div class="m-value">-23.28%</div></div><div><div class="m-label">損益額</div><div class="m-value">-2,162円</div></div></div>
+        <div class="badges"></div>
+        <ul class="machine-facts"><li>価格が前回比-5.82%変化(7566.0→7126.0)</li><li>[macro] XLB前営業日比: -2.19%</li><li>[為替感応度・暫定] 輸出系(コモディティ価格連動)(確信度: 中、投資Botter未検証)</li><li>[開示] 直近35日以内に新規開示なし</li></ul>
+        
+        <div class="summary-text"></div>
+        
+        <details class="more">
+          <summary>Claude解釈(考察)を見る</summary>
+          <div class="detail-body"><p>**DOWA HLDG(5714)の本日の値動き**
+
+本日の株価は-5.82%で、米国素材セクターETF(XLB)の前営業日比-2.19%より約3.6ポイント大きく下げました。ただし、XLBとの連動性は統計的な裏付けが弱いため、この差から理由を読み取ることは控えます。DOWAは非鉄製錬(亜鉛・銅・貴金属)やリサイクルが主な事業です。そのため株価は、金属の市況や為替(円相場)の影響を受けやすいと考えられます。なお、この為替との関係は決算資料などで数字の確認をしていない暫定的な分類です。</p></div>
+        </details>
+      </div>
+    </div>
+    
+    <div class="card loss">
+      <div class="card-body">
+        <div class="card-head">
+          <div>
+            <div class="code">7012 <span class="pill margin-mid">Tier B: 留保あり</span></div>
+            <div class="name">川崎重工業</div>
+          </div>
+          <div class="pnl loss">
+            <div class="pct">-8.61%</div>
+            <div class="amt">前日終値1,673円→本日1,529円</div>
+          </div>
+        </div>
+        
+        <div class="metrics"><div><div class="m-label">配当利回り</div><div class="m-value">2.56%</div></div><div><div class="m-label">PER</div><div class="m-value">11.0倍</div></div><div><div class="m-label">PBR</div><div class="m-value">1.33倍</div></div><div><div class="m-label">含み損益</div><div class="m-value">-50.66%</div></div><div><div class="m-label">損益額</div><div class="m-value">-157,000円</div></div></div>
+        <div class="badges"></div>
+        <ul class="machine-facts"><li>価格が前回比-8.61%変化(1673.0→1529.0)</li><li>[macro] XLI前営業日比: -3.09%</li><li>[為替感応度・暫定] 輸出系(為替感応度中〜高、防衛は国内向けの側面も)(確信度: 中、投資Botter未検証)</li><li>[開示] 直近35日以内に新規開示なし</li></ul>
+        
+        <div class="summary-text"></div>
+        
+        <details class="more">
+          <summary>Claude解釈(考察)を見る</summary>
+          <div class="detail-body"><p>川崎重工業（7012）は本日-8.61%下落しました。対応する米国セクターETF（XLI）の前営業日比-3.09%より約5.5ポイント大きい下げで、セクター全体の動きだけでは説明しきれない幅です。ただし両者の連動は「有意だが留保あり」の判定なので、この比較は参考程度に見てください。為替感応度は「輸出系（中〜高）」と推定されていますが、決算資料などでの検証を経ていない暫定的な分類です。防衛事業は国内向けの面もあるため、為替の影響は事業ごとに異なる可能性があります。</p></div>
+        </details>
+      </div>
+    </div>
     
     <div class="card loss">
       <div class="card-body">
@@ -260,79 +340,53 @@ footer p { margin: 0.5rem 0; }
             <div class="name">JX金属</div>
           </div>
           <div class="pnl loss">
-            <div class="pct">-6.20%</div>
-            <div class="amt">前日終値2,146円→本日2,012円</div>
+            <div class="pct">-9.54%</div>
+            <div class="amt">前日終値2,012円→本日1,820円</div>
           </div>
         </div>
         
-        <div class="metrics"><div><div class="m-label">配当利回り</div><div class="m-value">1.63%</div></div><div><div class="m-label">PER</div><div class="m-value">11.8倍</div></div><div><div class="m-label">PBR</div><div class="m-value">2.66倍</div></div><div><div class="m-label">含み損益</div><div class="m-value">-51.65%</div></div><div><div class="m-label">損益額</div><div class="m-value">-430,000円</div></div></div>
+        <div class="metrics"><div><div class="m-label">配当利回り</div><div class="m-value">1.92%</div></div><div><div class="m-label">PER</div><div class="m-value">10.7倍</div></div><div><div class="m-label">PBR</div><div class="m-value">2.40倍</div></div><div><div class="m-label">含み損益</div><div class="m-value">-56.26%</div></div><div><div class="m-label">損益額</div><div class="m-value">-468,400円</div></div></div>
         <div class="badges"></div>
-        <ul class="machine-facts"><li>価格が前回比-6.20%変化(2145.5→2012.5)</li><li>[開示] 直近35日以内に新規開示なし</li></ul>
+        <ul class="machine-facts"><li>価格が前回比-9.54%変化(2012.5→1820.5)</li><li>[開示] 直近35日以内に新規開示なし</li></ul>
         
         <div class="summary-text"></div>
         
         <details class="more">
           <summary>Claude解釈(考察)を見る</summary>
-          <div class="detail-body"><p>**JX金属（5016）は本日、前回の2,145.5円から2,012.5円へ下がり、下落率は6.20%（133円安）でした。** ニュースを調べるツールの使用が許可されなかったため、今日の下落につながった具体的な材料は確認できていません。
+          <div class="detail-body"><p>JX金属(5016)の本日の株価は、前回の2,012.5円から1,820.5円へ下がりました。下げ幅は192円、率にして-9.54%です。今回はニュースや開示を調べるツールの使用が許可されなかったため、この下落に直接結びつく材料は確認できていません。
 
-この銘柄の株価は、一般に次のような国内の要因に左右されやすいといえます。
-- 半導体材料（ターゲット材など）を主な事業としているため、国内の半導体関連株全体の売り買いの流れ
-- 業績の発表や会社の業績見通し
-- 親会社ENEOSが持ち株をさらに売り出すかどうかといった、株の需給の動き
+この銘柄の株価に影響しやすい国内の要因は次のとおりです。
+- 半導体材料・電子部品向け需要に関わる国内の材料
+- 業績や会社見通しの開示
+- 上場して日が浅いため、需給（売買の偏り）の影響を受けやすいこと
 
-今日の下落の原因については、適時開示（会社が出す公式発表）やニュースで確認するのが確実です。</p></div>
+これらは「株価が何に左右されやすいか」を整理したもので、今後どちらに動くかを示すものではありません。</p></div>
         </details>
       </div>
     </div>
     
-    <div class="card gain">
-      <div class="card-body">
-        <div class="card-head">
-          <div>
-            <div class="code">6976 <span class="pill edge-yes">Tier A: 頑健</span></div>
-            <div class="name">太陽誘電</div>
-          </div>
-          <div class="pnl gain">
-            <div class="pct">+4.60%</div>
-            <div class="amt">前日終値6,458円→本日6,755円</div>
-          </div>
-        </div>
-        
-        <div class="metrics"><div><div class="m-label">配当利回り</div><div class="m-value">1.39%</div></div><div><div class="m-label">PER</div><div class="m-value">53.3倍</div></div><div><div class="m-label">PBR</div><div class="m-value">2.35倍</div></div><div><div class="m-label">含み損益</div><div class="m-value">-39.96%</div></div><div><div class="m-label">損益額</div><div class="m-value">-8,990円</div></div></div>
-        <div class="badges"></div>
-        <ul class="machine-facts"><li>ねじれ検知: SOXX -2.75% vs 当日6976 +4.60%</li><li>[macro] SOXX前営業日比: -2.75%</li><li>[為替感応度・暫定] 輸出系(為替感応度高)(確信度: 中〜高、投資Botter未検証)</li><li>[開示] 直近35日以内に新規開示なし</li></ul>
-        
-        <div class="summary-text"></div>
-        
-        <details class="more">
-          <summary>Claude解釈(考察)を見る</summary>
-          <div class="detail-body"><p>本日、太陽誘電（6976）は**+4.60%**と上昇しました。一方、統計的な連動が確認されている米国の半導体株ETF（SOXX）は前営業日比**-2.75%**で、値動きの方向が逆になる「ねじれ」が起きました。今回の上昇には米半導体セクター以外の要因が強く効いていた可能性がありますが、個別の材料があったかどうかは確認できていません。同社は為替の影響を受けやすい輸出企業と暫定的に分類されています（決算資料などでの数値検証はしていません）。このため、米国セクターの動きに加えて為替にも株価が左右されやすい状況です。</p></div>
-        </details>
-      </div>
-    </div>
-    
-    <div class="card gain">
+    <div class="card loss">
       <div class="card-body">
         <div class="card-head">
           <div>
             <div class="code">285A <span class="pill margin-mid">Tier B: 留保あり</span></div>
             <div class="name">キオクシアホールディングス</div>
           </div>
-          <div class="pnl gain">
-            <div class="pct">+3.07%</div>
-            <div class="amt">前日終値8,025円→本日8,271円</div>
+          <div class="pnl loss">
+            <div class="pct">-11.66%</div>
+            <div class="amt">前日終値8,271円→本日7,307円</div>
           </div>
         </div>
         
-        <div class="metrics"><div><div class="m-label">配当利回り</div><div class="m-value">0.75%</div></div><div><div class="m-label">PER</div><div class="m-value">11.1倍</div></div><div><div class="m-label">PBR</div><div class="m-value">4.51倍</div></div><div><div class="m-label">含み損益</div><div class="m-value">-58.48%</div></div><div><div class="m-label">損益額</div><div class="m-value">-349,477円</div></div></div>
+        <div class="metrics"><div><div class="m-label">配当利回り</div><div class="m-value">0.82%</div></div><div><div class="m-label">PER</div><div class="m-value">9.8倍</div></div><div><div class="m-label">PBR</div><div class="m-value">3.99倍</div></div><div><div class="m-label">含み損益</div><div class="m-value">-63.32%</div></div><div><div class="m-label">損益額</div><div class="m-value">-378,397円</div></div></div>
         <div class="badges"></div>
-        <ul class="machine-facts"><li>[macro] SOXX前営業日比: -2.75%</li><li>[watch] 常時ウォッチ指定銘柄</li><li>[為替感応度・暫定] 輸出系(為替感応度おそらく高)(確信度: 低〜中、投資Botter未検証)</li><li>[開示] 直近35日以内に新規開示なし</li></ul>
+        <ul class="machine-facts"><li>価格が前回比-11.66%変化(8271.0→7307.0)</li><li>[macro] SOXX前営業日比: -10.55%</li><li>[watch] 常時ウォッチ指定銘柄</li><li>[為替感応度・暫定] 輸出系(為替感応度おそらく高)(確信度: 低〜中、投資Botter未検証)</li><li>[開示] 直近35日以内に新規開示なし</li></ul>
         
         <div class="summary-text"></div>
         
         <details class="more">
           <summary>Claude解釈(考察)を見る</summary>
-          <div class="detail-body"><p>本日のキオクシアHD（285A）は前日比+3.07%でした。前営業日の米国半導体ETF（SOXX）は−2.75%だったため、今回は逆の方向に動いています。SOXXとの連動は統計上「有意だが留保あり」です。無関係なETFでも47.4%の確率で同じくらい有意に出るため、今回の動きを読む材料としての重みは小さいです。為替については輸出系と暫定的に分類されています（確信度は低〜中）。ただし決算資料などで確かめた分類ではないため、この材料も重く扱わないのが妥当です。</p></div>
+          <div class="detail-body"><p>キオクシアHD（285A）は本日−11.66%と下落しました。前営業日の米半導体ETF（SOXX）も−10.55%と大きく下げており、下落幅は近い水準です。ただし両者の統計的な連動は「有意だが留保あり」の判定にとどまります。無関係なETFでも47.4%の確率で同程度に有意になるため、米国半導体株の動きで説明できる度合いは参考程度に見るべきです。為替感応度は「輸出系（おそらく高）」と推定されていますが、定量的な検証を経ていない暫定的な分類で、確信度は低〜中です。現時点で言えるのは、半導体セクター全体の動向と為替に左右されやすい可能性がある、という整理までです。</p></div>
         </details>
       </div>
     </div>
@@ -342,11 +396,11 @@ footer p { margin: 0.5rem 0; }
 
 <section>
   <h2>変化なしの銘柄(圧縮表示)</h2>
-  <div class="lead">機械検知の閾値に達せず、常時ウォッチ指定にも入っていない9銘柄です。</div>
+  <div class="lead">機械検知の閾値に達せず、常時ウォッチ指定にも入っていない7銘柄です。</div>
   <div class="table-scroll">
     <table class="tag-table">
       <tr><th>銘柄</th><th class="num">現在値</th><th class="num">前日比</th><th class="num">含み損益</th><th class="num">配当利回り</th><th class="num">PER</th><th class="num">信用倍率</th></tr>
-      <tr><td class="name-cell">ムゲンエステート<span class="code">3299</span></td><td class="num">1,497円</td><td class="num pl-loss">-0.07%</td><td class="num pl-loss">-19.95%</td><td class="num">6.94%</td><td class="num">7.6倍</td><td class="num">1.99倍</td></tr><tr><td class="name-cell">日本化薬<span class="code">4272</span></td><td class="num">1,856円</td><td class="num pl-loss">-1.41%</td><td class="num pl-gain">+3.08%</td><td class="num">3.67%</td><td class="num">9.5倍</td><td class="num">13.58倍</td></tr><tr><td class="name-cell">Gライト・再エネインフラ<span class="code">509A</span></td><td class="num">69,700円</td><td class="num pl-loss">-0.85%</td><td class="num pl-loss">-12.88%</td><td class="num">0.99%</td><td class="num">—</td><td class="num">—</td></tr><tr><td class="name-cell">DOWA HLDG<span class="code">5714</span></td><td class="num">7,566円</td><td class="num pl-loss">-3.30%</td><td class="num pl-loss">-18.54%</td><td class="num">5.30%</td><td class="num">4.9倍</td><td class="num">64.40倍</td></tr><tr><td class="name-cell">6594<span class="code">6594</span></td><td class="num">1,730円</td><td class="num pl-gain">+1.76%</td><td class="num pl-loss">-20.50%</td><td class="num">—</td><td class="num">—</td><td class="num">15.26倍</td></tr><tr><td class="name-cell">川崎重工業<span class="code">7012</span></td><td class="num">1,673円</td><td class="num pl-loss">-1.88%</td><td class="num pl-loss">-46.01%</td><td class="num">2.30%</td><td class="num">12.0倍</td><td class="num">26.01倍</td></tr><tr><td class="name-cell">三井住友FG<span class="code">8316</span></td><td class="num">3,077円</td><td class="num pl-loss">-0.77%</td><td class="num pl-loss">-8.72%</td><td class="num">3.22%</td><td class="num">14.2倍</td><td class="num">25.60倍</td></tr><tr><td class="name-cell">三井住友FG<span class="code">8316</span></td><td class="num">3,077円</td><td class="num pl-loss">-0.77%</td><td class="num pl-loss">-8.72%</td><td class="num">3.22%</td><td class="num">14.2倍</td><td class="num">25.60倍</td></tr><tr><td class="name-cell">MRK HLDG<span class="code">9980</span></td><td class="num">85円</td><td class="num pl-loss">-1.16%</td><td class="num pl-loss">-15.00%</td><td class="num">1.16%</td><td class="num">7.6倍</td><td class="num">—</td></tr>
+      <tr><td class="name-cell">ムゲンエステート<span class="code">3299</span></td><td class="num">1,455円</td><td class="num pl-loss">-2.81%</td><td class="num pl-loss">-22.19%</td><td class="num">7.15%</td><td class="num">7.4倍</td><td class="num">1.99倍</td></tr><tr><td class="name-cell">日本化薬<span class="code">4272</span></td><td class="num">1,778円</td><td class="num pl-loss">-4.20%</td><td class="num pl-loss">-1.25%</td><td class="num">3.88%</td><td class="num">9.1倍</td><td class="num">13.58倍</td></tr><tr><td class="name-cell">Gライト・再エネインフラ<span class="code">509A</span></td><td class="num">69,700円</td><td class="num pl-gain">+0.00%</td><td class="num pl-loss">-12.88%</td><td class="num">1.00%</td><td class="num">—</td><td class="num">—</td></tr><tr><td class="name-cell">6594<span class="code">6594</span></td><td class="num">1,644円</td><td class="num pl-loss">-4.97%</td><td class="num pl-loss">-24.45%</td><td class="num">—</td><td class="num">—</td><td class="num">15.26倍</td></tr><tr><td class="name-cell">三井住友FG<span class="code">8316</span></td><td class="num">2,936円</td><td class="num pl-loss">-4.58%</td><td class="num pl-loss">-12.90%</td><td class="num">3.41%</td><td class="num">13.5倍</td><td class="num">25.60倍</td></tr><tr><td class="name-cell">三井住友FG<span class="code">8316</span></td><td class="num">2,936円</td><td class="num pl-loss">-4.58%</td><td class="num pl-loss">-12.90%</td><td class="num">3.41%</td><td class="num">13.5倍</td><td class="num">25.60倍</td></tr><tr><td class="name-cell">MRK HLDG<span class="code">9980</span></td><td class="num">81円</td><td class="num pl-loss">-4.71%</td><td class="num pl-loss">-19.00%</td><td class="num">1.23%</td><td class="num">7.3倍</td><td class="num">—</td></tr>
     </table>
   </div>
 </section>
